@@ -44,7 +44,7 @@ class LandingPage extends React.Component {
   
   
   fetchData = () => {
-    axios.get("http://127.0.0.1:8000/api/sensor-detail/1/").then(res => {
+    axios.get("http://192.168.1.20:8000/api/sensor-detail/1/").then(res => {
       console.log(res);
       let tmpLabels = [];
       let tmpValues = [];
