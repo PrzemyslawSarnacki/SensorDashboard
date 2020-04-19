@@ -12,8 +12,8 @@ class SensorType(models.Model):
     name = models.CharField(max_length=100)
     sensor_location = models.ForeignKey(SensorLocation, related_name='location', on_delete=models.CASCADE)
     code = models.SlugField(max_length=50)
-    min_value = models.FloatField()
-    max_value = models.FloatField()
+    min_value = models.DecimalField(decimal_places=4, max_digits=7)
+    max_value = models.DecimalField(decimal_places=4, max_digits=7)
     unit = models.CharField(max_length=100)
     description = models.TextField(blank=True)
 
@@ -25,8 +25,8 @@ class SensorType(models.Model):
 
 
 class SensorData(models.Model):
-    value = models.FloatField()
-    time = models.DateField(auto_now_add=True)
+    value = models.DecimalField(decimal_places=4, max_digits=15)
+    time = models.DateTimeField(auto_now_add=True)
     sensor_type = models.ForeignKey(SensorType, related_name='data', on_delete=models.CASCADE)
 
     class Meta:

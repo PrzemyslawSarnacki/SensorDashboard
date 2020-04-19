@@ -7,6 +7,7 @@ class SensorDetailSerializer(serializers.ModelSerializer):
         model = SensorData
         fields = (
             'id',
+            'sensor_type',
             'value',
             'time',
         )
