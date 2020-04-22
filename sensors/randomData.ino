@@ -26,6 +26,7 @@ void loop(){
         
         int httpCode = http.POST("Message from ESP8266");   //Send the request
         String payload = http.getString();                  //Get the response payload
+
         
         Serial.println(httpCode);   //Print HTTP return code
         Serial.println(payload);    //Print request response payload
