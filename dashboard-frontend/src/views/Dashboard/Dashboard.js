@@ -75,7 +75,7 @@ export class Dashboard extends React.Component {
   
   componentDidMount() {
     this.fetchData();
-    this.interval = setInterval(() => this.fetchData(), 1000);
+    this.interval = setInterval(() => this.fetchData(), 3000);
   }
     
   render() {

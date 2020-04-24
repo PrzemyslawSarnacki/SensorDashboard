@@ -64,6 +64,7 @@ avr-toolchain-*.zip
 /app/build/
 /arduino-core/build/
 
+secretFile.h
 manifest.mf
 nbbuild.xml
 nbproject
