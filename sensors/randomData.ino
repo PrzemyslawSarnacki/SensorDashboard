@@ -25,7 +25,6 @@ void loop()
 
     if (WiFi.status() == WL_CONNECTED)
     { //Check WiFi connection status
-
         StaticJsonDocument<200> JSONbuffer; //Declaring static JSON buffer
         // JsonObject &JSONencoder = JSONbuffer.createObject();
         long randNumber = random(0, 25);
