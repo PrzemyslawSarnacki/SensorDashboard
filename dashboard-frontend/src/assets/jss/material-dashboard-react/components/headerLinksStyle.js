@@ -10,6 +10,7 @@ const headerLinksStyle = theme => ({
   ...dropdownStyle(theme),
   search: {
     "& > div": {
+      color: "#a9afbbd1",
       marginTop: "0"
     },
     [theme.breakpoints.down("sm")]: {
