@@ -3,6 +3,7 @@ import {
   blackColor,
   hexToRgb
 } from "assets/jss/material-dashboard-react.js";
+import { whiteColor } from "../material-dashboard-react";
 
 const checkboxAdnRadioStyle = {
   root: {
@@ -20,14 +21,14 @@ const checkboxAdnRadioStyle = {
   checkedIcon: {
     width: "20px",
     height: "20px",
-    border: "1px solid rgba(" + hexToRgb(blackColor) + ", .54)",
+    border: "1px solid rgba(" + hexToRgb(whiteColor) + ", .54)",
     borderRadius: "3px"
   },
   uncheckedIcon: {
     width: "0px",
     height: "0px",
     padding: "10px",
-    border: "1px solid rgba(" + hexToRgb(blackColor) + ", .54)",
+    border: "1px solid rgba(" + hexToRgb(whiteColor) + ", .54)",
     borderRadius: "3px"
   },
   radio: {
@@ -43,7 +44,7 @@ const checkboxAdnRadioStyle = {
     width: "0px",
     height: "0px",
     padding: "10px",
-    border: "1px solid rgba(" + hexToRgb(blackColor) + ", .54)",
+    border: "1px solid rgba(" + hexToRgb(whiteColor) + ", .54)",
     borderRadius: "50%"
   }
 };

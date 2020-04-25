@@ -12,7 +12,7 @@ import CardBody from "components/Card/CardBody.js";
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
-      color: "rgba(255,255,255,.62)",
+      color: "rgba(0,0,0,.62)",
       margin: "0",
       fontSize: "14px",
       marginTop: "0",

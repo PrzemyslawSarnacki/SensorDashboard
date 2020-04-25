@@ -1,6 +1,7 @@
 import {
   defaultFont,
   primaryColor,
+  whiteColor,
   dangerColor,
   grayColor
 } from "assets/jss/material-dashboard-react.js";
@@ -25,6 +26,7 @@ const tasksStyle = {
   },
   tableCell: {
     ...defaultFont,
+    color: "#a9afbbd1",
     padding: "8px",
     verticalAlign: "middle",
     border: "none",
@@ -45,12 +47,12 @@ const tasksStyle = {
   },
   edit: {
     backgroundColor: "transparent",
-    color: primaryColor[0],
+    color: whiteColor,
     boxShadow: "none"
   },
   close: {
     backgroundColor: "transparent",
-    color: dangerColor[0],
+    color: whiteColor,
     boxShadow: "none"
   }
 };

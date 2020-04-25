@@ -33,7 +33,7 @@ const styles = {
     width: "260px"
   },
   cardCategoryWhite: {
-    color: "rgba(255,255,255,.62)",
+    color: "white",
     margin: "0",
     fontSize: "14px",
     marginTop: "0",

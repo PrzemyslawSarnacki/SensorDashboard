@@ -205,7 +205,7 @@ const card = {
   margin: "25px 0",
   boxShadow: "0 1px 4px 0 rgba(" + hexToRgb(blackColor) + ", 0.14)",
   borderRadius: "3px",
-  color: "rgba(" + hexToRgb(blackColor) + ", 0.87)",
+  color: "rgba(" + hexToRgb(whiteColor) + ", 0.87)",
   background: whiteColor
 };
 

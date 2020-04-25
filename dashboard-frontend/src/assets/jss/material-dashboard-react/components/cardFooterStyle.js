@@ -37,6 +37,7 @@ const cardFooterStyle = {
       top: "4px",
       marginRight: "3px",
       marginLeft: "3px"
+      
     }
   },
   cardFooterChart: {

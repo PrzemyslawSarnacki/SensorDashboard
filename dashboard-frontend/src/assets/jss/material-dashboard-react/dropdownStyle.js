@@ -47,7 +47,7 @@ const dropdownStyle = theme => ({
       border: "0",
       WebkitBoxShadow: "none",
       boxShadow: "none",
-      color: "black"
+      color: "white"
     }
   },
   popperNav: {
@@ -90,7 +90,7 @@ const dropdownStyle = theme => ({
     fontSize: "14px",
     textAlign: "left",
     listStyle: "none",
-    backgroundColor: whiteColor,
+    backgroundColor: grayColor,
     WebkitBackgroundClip: "padding-box",
     backgroundClip: "padding-box"
   },

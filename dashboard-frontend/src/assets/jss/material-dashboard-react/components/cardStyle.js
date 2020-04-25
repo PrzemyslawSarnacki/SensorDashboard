@@ -1,5 +1,6 @@
 import {
   blackColor,
+  grayColor,
   whiteColor,
   hexToRgb
 } from "assets/jss/material-dashboard-react.js";
@@ -10,8 +11,8 @@ const cardStyle = {
     marginBottom: "30px",
     marginTop: "30px",
     borderRadius: "6px",
-    color: "rgba(" + hexToRgb(blackColor) + ", 0.87)",
-    background: whiteColor,
+    color: "rgba(" + hexToRgb(whiteColor) + ", 0.87)",
+    background: "rgb(32, 41, 63)",
     width: "100%",
     boxShadow: "0 1px 4px 0 rgba(" + hexToRgb(blackColor) + ", 0.14)",
     position: "relative",

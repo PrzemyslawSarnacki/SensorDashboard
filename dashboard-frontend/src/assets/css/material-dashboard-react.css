@@ -62,8 +62,8 @@ html * {
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  background-color: #eeeeee;
-  color: #3c4858;
+  background-color: #3c4858;
+  color: #a9afbbd1;
   margin: 0;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
@@ -112,8 +112,8 @@ h6 {
 }
 
 body {
-  background-color: #eeeeee;
-  color: #3c4858;
+  background-color: rgb(26, 32, 53);
+  color: #a9afbbd1;
 }
 
 blockquote p {
@@ -251,7 +251,7 @@ footer ul li a:hover {
   border-radius: 8px 0 0 8px;
   text-align: center;
   top: 120px;
-  .badge-primary-background-color: #9c27b0;
+  .badge-primary-background-color: #a9afbbd1;
 }
 
 .fixed-plugin .SocialMediaShareButton,
@@ -281,7 +281,7 @@ footer ul li a:hover {
   border-radius: 0.1875rem;
   padding: 0 10px;
   position: absolute;
-  color: rgba(0, 0, 0, 0.87);
+  color: #a9afbbd1;
   display: inline-block;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
   background: #fff;

@@ -28,10 +28,10 @@
             }
         },
         {
-            "label": "Npm: start",
+            "label": "Npm: start ok",
             "type": "npm",
             "script": "start",
-            "path": "${workspaceFolder}\\dashboard-frontend",
+            "path": "/dashboard-frontend",
             "problemMatcher": [],
             "presentation": {
                 "group": "groupA",
