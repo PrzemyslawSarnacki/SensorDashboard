@@ -53,6 +53,10 @@ export class Dashboard extends React.Component {
     this.state = {
       dataLabels: [],
       dataValues: [],
+      currentValue: "",
+      currentTime: "",
+      currentSensor: "",
+      currentNumber: "",
     }
   }
   
@@ -69,6 +73,10 @@ export class Dashboard extends React.Component {
       this.setState({
         dataLabels: tmpLabels,
         dataValues: tmpValues,
+        currentTime: tmpLabels[tmpLabels.length-1],
+        currentValue: tmpValues[tmpValues.length-1],
+        currentSensor: res.data[res.data.length-1].sensor_type,
+        currentNumber: res.data[res.data.length-1].id,
       });
     });
   }
@@ -81,7 +89,6 @@ export class Dashboard extends React.Component {
   render() {
   
     const { classes } = this.props;
-    // const classes = useStyles();
     const { ...rest } = this.props;
     const data = {
       labels: this.state.dataLabels,
@@ -126,7 +133,7 @@ export class Dashboard extends React.Component {
               </CardIcon>
               <p className={classes.cardCategory}>Used Space</p>
               <h3 className={classes.cardTitle}>
-                49/50 <small>GB</small>
+                {this.state.currentTime} <small>GB</small>
               </h3>
             </CardHeader>
             <CardFooter stats>
@@ -148,7 +155,7 @@ export class Dashboard extends React.Component {
                 <Store />
               </CardIcon>
               <p className={classes.cardCategory}>Revenue</p>
-              <h3 className={classes.cardTitle}>$34,245</h3>
+    <h3 className={classes.cardTitle}>{this.state.currentValue}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -165,7 +172,7 @@ export class Dashboard extends React.Component {
                 <Icon>info_outline</Icon>
               </CardIcon>
               <p className={classes.cardCategory}>Fixed Issues</p>
-              <h3 className={classes.cardTitle}>75</h3>
+    <h3 className={classes.cardTitle}>{this.state.currentSensor}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -182,7 +189,7 @@ export class Dashboard extends React.Component {
                 <Accessibility />
               </CardIcon>
               <p className={classes.cardCategory}>Followers</p>
-              <h3 className={classes.cardTitle}>+245</h3>
+    <h3 className={classes.cardTitle}>{this.state.currentNumber}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
