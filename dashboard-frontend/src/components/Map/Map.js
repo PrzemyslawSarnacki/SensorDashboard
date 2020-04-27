@@ -39,7 +39,6 @@ const markers = [
   { markerOffset: 15, name: "Paramaribo", coordinates: [-55.2038, 5.852] },
   { markerOffset: 15, name: "Montevideo", coordinates: [-56.1645, -34.9011] },
   { markerOffset: 15, name: "Caracas", coordinates: [-66.9036, 10.4806] },
-  { markerOffset: 15, name: "Lomza", coordinates: [21.9882, 53.1692] },
   // { markerOffset: 15, name: "Sensor", coordinates: [19.9882, 53.1692] },
   { markerOffset: 15, name: "Lima", coordinates: [-77.0428, -12.0464] }
 ];
@@ -57,7 +56,18 @@ export class MapChart extends React.Component {
   fetchMap = () => {
     axios.get("http://192.168.1.20:8000/api/sensor-list/").then(res => {
       console.log(res);
+      res.data.forEach(row => {
+        markers.push(
+          {
+            markerOffset: 15,
+            name: row.name,
+            coordinates: [row.sensor_location.longtitude,row.sensor_location.latitude],
+            id: row.id,
+          }
   
+        );
+      });
+      console.log(markers)
       this.setState({});
 
   
@@ -106,7 +116,7 @@ export class MapChart extends React.Component {
               ))
             }
           </Geographies>
-          {markers.map(({ name, coordinates, markerOffset }) => (
+          {markers.map(({ name, coordinates, markerOffset, id }) => (
         <Marker key={name} coordinates={coordinates}>
           <a href="/">
           <g
@@ -114,7 +124,7 @@ export class MapChart extends React.Component {
             stroke="#4B0082"
             strokeWidth="2"
             strokeLinecap="round"
-            onMouseEnter={() => {this.props.setTooltipContent("OK spoko")}}
+            onMouseEnter={() => {this.props.setTooltipContent(name)}}
             strokeLinejoin="round"
             transform="translate(-12, -24)"
           >
