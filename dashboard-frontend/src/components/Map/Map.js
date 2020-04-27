@@ -6,6 +6,8 @@ import {
   Geography, 
   Marker
 } from "react-simple-maps";
+import axios from "axios";
+
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -20,15 +22,6 @@ const rounded = num => {
   }
 };
 
-// fetchData = () => {
-//   axios.get("http://192.168.1.20:8000/api/sensor-list/").then(res => {
-//     console.log(res);
-
-//     setName("");
-
-//   });
-
-// }
 
 const markers = [
   {
@@ -51,11 +44,35 @@ const markers = [
   { markerOffset: 15, name: "Lima", coordinates: [-77.0428, -12.0464] }
 ];
 
-const MapChart = ({ setTooltipContent }) => {
-const [name, setName] = useState("");
 
-  return (
-    <>
+export class MapChart extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+
+    }
+  }
+  
+  fetchMap = () => {
+    axios.get("http://192.168.1.20:8000/api/sensor-list/").then(res => {
+      console.log(res);
+  
+      this.setState({});
+
+  
+    });
+  
+  }
+
+  componentDidMount() {
+    this.fetchMap();
+  }
+
+  render() {
+    
+    return (
+      <>
       <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
         <ZoomableGroup>
           <Geographies geography={geoUrl}>
@@ -66,10 +83,10 @@ const [name, setName] = useState("");
                   geography={geo}
                   onMouseEnter={() => {
                     const { NAME, POP_EST } = geo.properties;
-                    setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
+                    this.props.setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
                   }}
                   onMouseLeave={() => {
-                    setTooltipContent("");
+                    this.props.setTooltipContent("");
                   }}
                   style={{
                     default: {
@@ -77,7 +94,7 @@ const [name, setName] = useState("");
                       outline: "none"
                     },
                     hover: {
-                      fill: "#F53",
+                      fill: "#9400D3",
                       outline: "none"
                     },
                     pressed: {
@@ -92,34 +109,26 @@ const [name, setName] = useState("");
           {markers.map(({ name, coordinates, markerOffset }) => (
         <Marker key={name} coordinates={coordinates}>
           <a href="/">
-
           <g
-            fill="none"
-            stroke="#FF5533"
+            fill="#9400D3"
+            stroke="#4B0082"
             strokeWidth="2"
             strokeLinecap="round"
-            onMouseEnter={() => {setTooltipContent("OK spoko")}}
+            onMouseEnter={() => {this.props.setTooltipContent("OK spoko")}}
             strokeLinejoin="round"
             transform="translate(-12, -24)"
           >
-            <circle cx="12" cy="10" r="3" />
+            <circle cx="12" cy="10" r="3" fill="#ffffff" />
             <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
           </g>
             </a>
-          <text
-            textAnchor="middle"
-            onMouseEnter={() => {setTooltipContent("Eluwa")}}
-            y={markerOffset}
-            style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
-          >
-            {name}
-          </text>
         </Marker>
       ))}
         </ZoomableGroup>
       </ComposableMap>
     </>
-  );
-};
+      )
+  }
+}
 
 export default memo(MapChart);
