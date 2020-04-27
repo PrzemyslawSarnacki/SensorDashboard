@@ -39,7 +39,6 @@ const markers = [
   { markerOffset: 15, name: "Paramaribo", coordinates: [-55.2038, 5.852] },
   { markerOffset: 15, name: "Montevideo", coordinates: [-56.1645, -34.9011] },
   { markerOffset: 15, name: "Caracas", coordinates: [-66.9036, 10.4806] },
-  // { markerOffset: 15, name: "Sensor", coordinates: [19.9882, 53.1692] },
   { markerOffset: 15, name: "Lima", coordinates: [-77.0428, -12.0464] }
 ];
 

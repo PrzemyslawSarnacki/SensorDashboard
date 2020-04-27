@@ -6,7 +6,7 @@ from rest_framework.generics import (
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from .models import SensorLocation, SensorData, SensorType
-from .serializers import SensorDetailSerializer, SensorListSerializer
+from .serializers import SensorDetailSerializer, SensorListSerializer, SensorTypeCreateSerializer
 
 
 class SensorListView(ListAPIView):
@@ -23,3 +23,8 @@ class SensorDataCreateView(CreateAPIView):
     permission_classes = (AllowAny, )
     serializer_class = SensorDetailSerializer
     queryset = SensorData.objects.all()
+
+class SensorTypeCreateView(CreateAPIView):
+    permission_classes = (AllowAny, )
+    serializer_class = SensorTypeCreateSerializer
+    queryset = SensorType.objects.all()
