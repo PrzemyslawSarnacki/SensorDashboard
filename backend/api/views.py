@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import (
     ListAPIView, RetrieveAPIView, CreateAPIView,
-    UpdateAPIView, DestroyAPIView
+    UpdateAPIView, DestroyAPIView, ListCreateAPIView
 )
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
@@ -17,14 +17,20 @@ class SensorListView(ListAPIView):
 class SensorDetailView(ListAPIView):
     permission_classes = (AllowAny,)
     serializer_class = SensorDetailSerializer
-    queryset = SensorData.objects.all()
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        pk = self.kwargs['pk']
+        return SensorData.objects.filter(sensor_type=pk)
 
 class SensorDataCreateView(CreateAPIView):
     permission_classes = (AllowAny, )
     serializer_class = SensorDetailSerializer
     queryset = SensorData.objects.all()
 
-class SensorTypeCreateView(CreateAPIView):
+class SensorTypeCreateView(ListCreateAPIView):
     permission_classes = (AllowAny, )
     serializer_class = SensorTypeCreateSerializer
     queryset = SensorType.objects.all()

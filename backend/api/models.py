@@ -13,8 +13,8 @@ class SensorType(models.Model):
     name = models.CharField(max_length=100)
     sensor_location = models.ForeignKey(SensorLocation, related_name='location', on_delete=models.CASCADE)
     code = models.SlugField(max_length=50)
-    min_value = models.DecimalField(decimal_places=4, max_digits=7)
-    max_value = models.DecimalField(decimal_places=4, max_digits=7)
+    min_value = models.DecimalField(decimal_places=4, max_digits=10)
+    max_value = models.DecimalField(decimal_places=4, max_digits=10)
     unit = models.CharField(max_length=100)
     description = models.TextField(blank=True)
 

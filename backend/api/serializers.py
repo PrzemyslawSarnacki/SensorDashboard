@@ -11,6 +11,7 @@ class SensorDetailSerializer(serializers.ModelSerializer):
             'time',
         )
 
+
 class SensorLocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = SensorLocation
@@ -42,7 +43,7 @@ class SensorListSerializer(serializers.ModelSerializer):
         return SensorLocationSerializer(obj.sensor_location).data
 
 class SensorTypeCreateSerializer(serializers.ModelSerializer):
-    sensor_location = serializers.SerializerMethodField()
+    sensor_location = SensorLocationSerializer()
 
     class Meta:
         model = SensorType
@@ -56,6 +57,13 @@ class SensorTypeCreateSerializer(serializers.ModelSerializer):
             'unit',
             'description',
         )
+
     
     def get_sensor_location(self, obj):
         return SensorLocationSerializer(obj.sensor_location).data
+
+    def create(self, validated_data):
+        location = validated_data.pop('sensor_location')
+        sensor_location = SensorLocation.objects.create(**location)
+        sensor_type = SensorType.objects.create(sensor_location=sensor_location, **validated_data)
+        return sensor_type

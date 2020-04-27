@@ -30,7 +30,7 @@ class Scraper:
 
     def store(self):
         api_url = "http://192.168.1.20:8000/api/add-data/"
-        headers = {'Content-Type': 'application/json'}
+        headers = {'Media-Type': 'application/json'}
         print(self.sensor_type)
         r = requests.post(api_url, headers=headers, data={"sensor_type": self.sensor_type, 'value': self.new_cases})
         print(r.status_code)
@@ -51,7 +51,7 @@ print(COUNTRIES.values())
 for country, sensor_type in COUNTRIES.items():
     s = Scraper(['database'], country, sensor_type)
     s.parse()
-    # s.store()
+    s.store()
     
 # s.store()
 # if datetime.datetime.now().hour == 23:
