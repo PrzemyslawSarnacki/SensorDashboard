@@ -1,7 +1,7 @@
+import re
+import datetime
 import requests
 from bs4 import BeautifulSoup
-import datetime
-import re
 
 # Simple script for scaping covid data and posting it. It's purpouse is to kinda imitate sensors
 

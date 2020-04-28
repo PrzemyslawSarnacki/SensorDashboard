@@ -1,12 +1,7 @@
-import requests
-from bs4 import BeautifulSoup
-import datetime
-import re
 import time
+import requests
 
-# Simple script for scaping covid data and posting it. It's purpouse is to kinda imitate sensors
-
-
+# Simple script for mocking changes in location of sensor
 
 def update(sensor_type, latitude, longtitude):
     api_url = f"http://192.168.1.20:8000/api/update-location/{sensor_type}/"
@@ -23,4 +18,3 @@ def move(distance, step=1 ,init_latitude=51, init_longtitude=21):
         time.sleep(5)
 
 move(10)
-
