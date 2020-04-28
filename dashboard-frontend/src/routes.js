@@ -30,6 +30,7 @@ import UserProfile from "views/UserProfile/UserProfile.js";
 import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import Maps from "views/Maps/Maps.js";
+import IndividualMaps from "views/Maps/IndividualMaps.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
 // core components/views for RTL layout
@@ -68,6 +69,13 @@ const dashboardRoutes = [
     name: "Maps",
     icon: LocationOn,
     component: Maps,
+    layout: "/admin"
+  },
+  {
+    path: "/location/:productID",
+    name: "Maps",
+    icon: LocationOn,
+    component: IndividualMaps,
     layout: "/admin"
   },
   {

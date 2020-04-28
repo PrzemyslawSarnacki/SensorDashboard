@@ -12,17 +12,6 @@ import axios from "axios";
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-const rounded = num => {
-  if (num > 1000000000) {
-    return Math.round(num / 100000000) / 10 + "Bn";
-  } else if (num > 1000000) {
-    return Math.round(num / 100000) / 10 + "M";
-  } else {
-    return Math.round(num / 100) / 10 + "K";
-  }
-};
-
-
 const markers = [];
 
 
@@ -37,7 +26,7 @@ export class IndividualMap extends React.Component {
   
 
   fetchMap = () => {
-    axios.get(`http://192.168.1.20:8000/api/sensor-location/${1}/`).then(res => {
+    axios.get(`http://192.168.1.20:8000/api/sensor-location/${this.props.id}/`).then(res => {
     //   console.log(res);
       res.data.forEach(row => {
         //   console.log(markers.length)
@@ -89,13 +78,6 @@ export class IndividualMap extends React.Component {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  onMouseEnter={() => {
-                    const { NAME, POP_EST } = geo.properties;
-                    this.props.setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
-                  }}
-                  onMouseLeave={() => {
-                    this.props.setTooltipContent("");
-                  }}
                   style={{
                     default: {
                       fill: "#D6D6DA",
