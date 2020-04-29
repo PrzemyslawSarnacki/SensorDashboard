@@ -31,6 +31,7 @@ import UserProfile from "views/UserProfile/UserProfile.js";
 import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import Maps from "views/Maps/Maps.js";
+import Locations from "views/Locations/Locations.js";
 import IndividualMaps from "views/Maps/IndividualMaps.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
@@ -73,8 +74,15 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    path: "/locations",
+    name: "Locations",
+    icon: Navigation,
+    component: Locations,
+    layout: "/admin"
+  },
+  {
     path: "/location/:productID",
-    name: "Location",
+    name: "Locations",
     icon: Navigation,
     component: IndividualMaps,
     layout: "/admin"

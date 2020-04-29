@@ -66,10 +66,6 @@ export class MapChart extends React.Component {
   
         );
       });
-      console.log(markers)
-      this.setState({});
-
-  
     });
   
   }
