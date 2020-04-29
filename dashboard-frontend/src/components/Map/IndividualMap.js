@@ -119,6 +119,9 @@ export class IndividualMap extends React.Component {
                       onMouseEnter={() => {
                         this.props.setTooltipContent(name);
                       }}
+                      onMouseLeave={() => {
+                        this.props.setTooltipContent("")
+                      }}
                       strokeLinejoin="round"
                       transform="translate(-12, -24)"
                     >
