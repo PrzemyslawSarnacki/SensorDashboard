@@ -15,6 +15,8 @@ import Snackbar from "components/Snackbar/Snackbar.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
+import IndividualMap from "components/Map/IndividualMap.js";
+import ReactTooltip from "react-tooltip";
 import axios from "axios";
 
 const styles = {
@@ -51,7 +53,9 @@ const useStyles = makeStyles(styles);
 
 export default function Locations() {
   const classes = useStyles();
+  const [content, setContent] = useState("");
   const [list, setList] = useState([]);
+  const [id, setId] = useState(1);
 
   useEffect(() => {
     fetchList();
@@ -96,7 +100,7 @@ export default function Locations() {
                   <Button
                     fullWidth
                     color="primary"
-                    href={`location/${sensor.id}`}
+                    onClick={() => setId(sensor.id)}
                   >
                     {sensor.name}
                   </Button>
@@ -113,6 +117,10 @@ export default function Locations() {
             </GridContainer>
           </GridItem>
         </GridContainer>
+        <div>
+      <IndividualMap id={id} setTooltipContent={setContent} />
+      <ReactTooltip>{content}</ReactTooltip>
+    </div>
       </CardBody>
     </Card>
   );
