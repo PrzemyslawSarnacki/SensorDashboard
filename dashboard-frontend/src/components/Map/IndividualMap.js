@@ -75,7 +75,6 @@ export class IndividualMap extends React.Component {
     }  
     // this.clearComponent();
 
-
   }
   render() {
     return (

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import MenuItem from '@material-ui/core/MenuItem';
 // @material-ui/icons
 import AddAlert from "@material-ui/icons/AddAlert";
 // core components
@@ -14,12 +15,21 @@ import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 import Snackbar from "components/Snackbar/Snackbar.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
+import CustomSelect from "components/CustomSelect/CustomSelect.js";
 import CardBody from "components/Card/CardBody.js";
 import IndividualMap from "components/Map/IndividualMap.js";
 import ReactTooltip from "react-tooltip";
 import axios from "axios";
 
-const styles = {
+const useStyles = makeStyles(((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    color: "rgba(255,255,255,.62)",
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
       color: "rgba(255,255,255,.62)",
@@ -47,17 +57,18 @@ const styles = {
       lineHeight: "1",
     },
   },
-};
+})));
 
-const useStyles = makeStyles(styles);
 
 export default function Locations() {
   const classes = useStyles();
   const [content, setContent] = useState("");
   const [list, setList] = useState([]);
   const [id, setId] = useState(1);
+  const [name, setName] = useState("Name");
 
   useEffect(() => {
+    console.log(name)
     fetchList();
   }, []);
 
@@ -72,6 +83,22 @@ export default function Locations() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const [age, setAge] = React.useState('');
+
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
+
+
+
+  const handleChange = (event) => {
+    console.log(name);
+    if (event.target.value[1] !== undefined) {
+      setId(event.target.value[0]);
+      setName(event.target.value[1]);
+    }
   };
 
   return (
@@ -95,6 +122,33 @@ export default function Locations() {
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={10} lg={8}>
             <GridContainer>
+              {/* <FormControl className={classes.formControl}>
+                <InputLabel color="primary" id="demo-simple-select-label">Sensor Name</InputLabel> */}
+                <CustomSelect
+                  // labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  color="primary"
+                  value={name}
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    value: name,
+                    onChange: handleChange,
+
+                  }}
+
+                  onChange={handleChange}
+                  >
+              {list.map((sensor) => (
+                <MenuItem value={[sensor.id, sensor.name]}>{sensor.name}</MenuItem>
+              ))}
+
+                </CustomSelect>
+              {/* <FormHelperText>{name}</FormHelperText>
+              </FormControl> */}
+ 
+
               {list.map((sensor) => (
                 <GridItem xs={12} sm={12} md={4}>
                   <Button
@@ -118,6 +172,7 @@ export default function Locations() {
           </GridItem>
         </GridContainer>
         <div>
+              <h5 style={{textAlign: "center"}}>{name}</h5>
       <IndividualMap id={id} setTooltipContent={setContent} />
       <ReactTooltip>{content}</ReactTooltip>
     </div>
