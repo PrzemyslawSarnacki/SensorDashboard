@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import {
   ZoomableGroup,
   ComposableMap,
@@ -12,47 +12,15 @@ import axios from "axios";
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-const rounded = num => {
-  if (num > 1000000000) {
-    return Math.round(num / 100000000) / 10 + "Bn";
-  } else if (num > 1000000) {
-    return Math.round(num / 100000) / 10 + "M";
-  } else {
-    return Math.round(num / 100) / 10 + "K";
-  }
-};
 
 
-const markers = [
-  {
-    markerOffset: -30,
-    name: "Buenos Aires",
-    coordinates: [-58.3816, -34.6037]
-  },
-  { markerOffset: 15, name: "La Paz", coordinates: [-68.1193, -16.4897] },
-  { markerOffset: 15, name: "Brasilia", coordinates: [-47.8825, -15.7942] },
-  { markerOffset: 15, name: "Santiago", coordinates: [-70.6693, -33.4489] },
-  { markerOffset: 15, name: "Bogota", coordinates: [-74.0721, 4.711] },
-  { markerOffset: 15, name: "Quito", coordinates: [-78.4678, -0.1807] },
-  { markerOffset: -30, name: "Georgetown", coordinates: [-58.1551, 6.8013] },
-  { markerOffset: -30, name: "Asuncion", coordinates: [-57.5759, -25.2637] },
-  { markerOffset: 15, name: "Paramaribo", coordinates: [-55.2038, 5.852] },
-  { markerOffset: 15, name: "Montevideo", coordinates: [-56.1645, -34.9011] },
-  { markerOffset: 15, name: "Caracas", coordinates: [-66.9036, 10.4806] },
-  { markerOffset: 15, name: "Lima", coordinates: [-77.0428, -12.0464] }
-];
-
-
-export class MapChart extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-
-    }
-  }
   
-  fetchMap = () => {
+  
+  const MapChart = ({ setTooltipContent }) => {
+    const markers = [
+    ];
+  
+  const fetchMap = () => {
     axios.get("http://192.168.1.20:8000/api/sensor-list/").then(res => {
       console.log(res);
       res.data.forEach(row => {
@@ -70,11 +38,11 @@ export class MapChart extends React.Component {
   
   }
 
-  componentDidMount() {
-    this.fetchMap();
-  }
+  useEffect(() => {
+    fetchMap();
+    console.log(markers)
+  }); 
 
-  render() {
     
     return (
       <>
@@ -86,13 +54,6 @@ export class MapChart extends React.Component {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  onMouseEnter={() => {
-                    const { NAME, POP_EST } = geo.properties;
-                    this.props.setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
-                  }}
-                  onMouseLeave={() => {
-                    this.props.setTooltipContent("");
-                  }}
                   style={{
                     default: {
                       fill: "#D6D6DA",
@@ -111,7 +72,7 @@ export class MapChart extends React.Component {
               ))
             }
           </Geographies>
-          {markers.map(({ name, coordinates, markerOffset, id }) => (
+        {markers.map(({ name, coordinates }) => (
         <Marker key={name} coordinates={coordinates}>
           <a href="/">
           <g
@@ -119,7 +80,8 @@ export class MapChart extends React.Component {
             stroke="#4B0082"
             strokeWidth="2"
             strokeLinecap="round"
-            onMouseEnter={() => {this.props.setTooltipContent(name)}}
+            onMouseEnter={() => {setTooltipContent(name)}}
+            onMouseLeave={() => {setTooltipContent("")}}
             strokeLinejoin="round"
             transform="translate(-12, -24)"
           >
@@ -134,6 +96,5 @@ export class MapChart extends React.Component {
     </>
       )
   }
-}
 
 export default memo(MapChart);

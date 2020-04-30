@@ -24,7 +24,6 @@ import axios from "axios";
 const useStyles = makeStyles(((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    color: "rgba(255,255,255,.62)",
     minWidth: 120,
   },
   selectEmpty: {
@@ -57,6 +56,34 @@ const useStyles = makeStyles(((theme) => ({
       lineHeight: "1",
     },
   },
+  input: {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+
 })));
 
 
@@ -126,18 +153,18 @@ export default function Locations() {
                 <InputLabel color="primary" id="demo-simple-select-label">Sensor Name</InputLabel> */}
                 <CustomSelect
                   // labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  color="primary"
-                  value={name}
+                  id="company-disabled"
                   formControlProps={{
                     fullWidth: true
                   }}
                   inputProps={{
+                    style: {          border: ' #ced4da',
+
+              },
                     value: name,
                     onChange: handleChange,
-
                   }}
-
+                  
                   onChange={handleChange}
                   >
               {list.map((sensor) => (
@@ -148,26 +175,6 @@ export default function Locations() {
               {/* <FormHelperText>{name}</FormHelperText>
               </FormControl> */}
  
-
-              {list.map((sensor) => (
-                <GridItem xs={12} sm={12} md={4}>
-                  <Button
-                    fullWidth
-                    color="primary"
-                    onClick={() => setId(sensor.id)}
-                  >
-                    {sensor.name}
-                  </Button>
-                  <Snackbar
-                    place="br"
-                    color="info"
-                    icon={AddAlert}
-                    message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
-                    // open={br}
-                    close
-                  />
-                </GridItem>
-              ))}
             </GridContainer>
           </GridItem>
         </GridContainer>
