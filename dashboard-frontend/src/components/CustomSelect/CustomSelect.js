@@ -5,12 +5,14 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
 import Select from "@material-ui/core/Select";
 // @material-ui/icons
 import Clear from "@material-ui/icons/Clear";
 import Check from "@material-ui/icons/Check";
 // core components
 import styles from "assets/jss/material-dashboard-react/components/customInputStyle.js";
+import color from "@material-ui/core/colors/amber";
 
 const useStyles = makeStyles(styles);
 
@@ -55,10 +57,16 @@ export default function CustomSelect(props) {
       ) : null}
       <Select
         classes={{
-          root: marginTop,
-          disabled: classes.disabled,
-          select: underlineClasses
+         root: classes.underline,
+         icon: classes.labelRoot,
         }}
+        input={
+          <Input
+            classes={{
+              underline: underlineClasses,
+            }}
+          />
+        }      
         id={id}
         {...inputProps}
       >

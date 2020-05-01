@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 // @material-ui/icons
 import AddAlert from "@material-ui/icons/AddAlert";
 // core components
@@ -112,14 +113,6 @@ export default function Locations() {
       });
   };
 
-  const [age, setAge] = React.useState('');
-
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
-
-
-
   const handleChange = (event) => {
     console.log(name);
     if (event.target.value[1] !== undefined) {
@@ -149,18 +142,12 @@ export default function Locations() {
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={10} lg={8}>
             <GridContainer>
-              {/* <FormControl className={classes.formControl}>
-                <InputLabel color="primary" id="demo-simple-select-label">Sensor Name</InputLabel> */}
                 <CustomSelect
-                  // labelId="demo-simple-select-label"
                   id="company-disabled"
                   formControlProps={{
                     fullWidth: true
                   }}
                   inputProps={{
-                    style: {          border: ' #ced4da',
-
-              },
                     value: name,
                     onChange: handleChange,
                   }}
@@ -170,7 +157,6 @@ export default function Locations() {
               {list.map((sensor) => (
                 <MenuItem value={[sensor.id, sensor.name]}>{sensor.name}</MenuItem>
               ))}
-
                 </CustomSelect>
               {/* <FormHelperText>{name}</FormHelperText>
               </FormControl> */}
