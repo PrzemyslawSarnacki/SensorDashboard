@@ -13,20 +13,23 @@ const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";  
   
   const MapChart = ({ setTooltipContent }) => {
-    const markers = [
-    ];
+    const [markers, setMarkers] = useState([]);
+    // const markers = [
+    // ];
   
   const fetchMap = () => {
     axios.get("http://192.168.1.20:8000/api/sensor-list/").then(res => {
       console.log(res);
       res.data.forEach(row => {
-        markers.push(
-          {
-            markerOffset: 15,
-            name: row.name,
-            coordinates: [row.sensor_location.longtitude,row.sensor_location.latitude],
-            id: row.id,
-          }
+        setMarkers(
+          oldArray => [...oldArray, 
+            {
+              markerOffset: 15,
+              name: row.name,
+              coordinates: [row.sensor_location.longtitude,row.sensor_location.latitude],
+              id: row.id,
+            }
+          ]
   
         );
       });
@@ -36,7 +39,7 @@ const geoUrl =
   useEffect(() => {
     fetchMap();
     console.log(markers)
-  }); 
+  }, []); 
 
     
     return (

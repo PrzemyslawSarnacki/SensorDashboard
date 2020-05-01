@@ -56,6 +56,7 @@ export default function CustomSelect(props) {
         </InputLabel>
       ) : null}
       <Select
+        value={"Ok"}
         classes={{
          root: classes.underline,
          icon: classes.labelRoot,

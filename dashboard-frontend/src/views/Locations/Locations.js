@@ -10,6 +10,7 @@ import Select from '@material-ui/core/Select';
 import AddAlert from "@material-ui/icons/AddAlert";
 // core components
 import GridItem from "components/Grid/GridItem.js";
+
 import GridContainer from "components/Grid/GridContainer.js";
 import Button from "components/CustomButtons/Button.js";
 import SnackbarContent from "components/Snackbar/SnackbarContent.js";
@@ -144,11 +145,12 @@ export default function Locations() {
             <GridContainer>
                 <CustomSelect
                   id="company-disabled"
+                  labelText="Choose"
                   formControlProps={{
                     fullWidth: true
                   }}
                   inputProps={{
-                    value: name,
+                    // value: "name",
                     onChange: handleChange,
                   }}
                   
