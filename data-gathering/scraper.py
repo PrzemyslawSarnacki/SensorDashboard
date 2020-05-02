@@ -18,14 +18,14 @@ class Scraper:
         links = soup.findAll("li", {"class": "news_li"})
         print(links[1].get_text())
         try:
-            numbers = re.findall("[0-9]+", links[1].get_text())
+            numbers = re.findall("[0-9]+", links[1].get_text().replace(",", ""))
             if len(numbers) == 2:
                 pass
             elif len(numbers) == 1:
                 numbers.append("0")
         except IndexError:
             numbers = ["0", "0"]
-        self.new_cases, self.new_deaths = numbers
+        self.new_cases, self.new_deaths = numbers[0:2]
         print(self.new_cases, self.new_deaths)
 
     def store(self):
