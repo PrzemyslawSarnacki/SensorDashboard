@@ -123,18 +123,18 @@ export default function Charts() {
   return (
     <Card>
       <CardHeader color="primary">
-        <h4 className={classes.cardTitleWhite}>Locations</h4>
+        <h4 className={classes.cardTitleWhite}>Charts</h4>
         <p className={classes.cardCategoryWhite}>
-          Track your sensor in real time
+          Plot data from your sensor in real time
         </p>
       </CardHeader>
       <CardBody>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6} style={{ textAlign: "center" }}>
             <h5>
-              Individual Sensor Location
+              Individual Sensor Chart
               <br />
-              <small>Choose which sensor to track</small>
+              <small>Choose which sensor data to plot</small>
             </h5>
           </GridItem>
         </GridContainer>
@@ -155,7 +155,7 @@ export default function Charts() {
                   onChange={handleChange}
                   >
               {list.map((sensor) => (
-                <MenuItem value={[sensor.id, sensor.name]}>{sensor.name}</MenuItem>
+                <MenuItem key={sensor.id} value={[sensor.id, sensor.name]}>{sensor.name}</MenuItem>
               ))}
                 </CustomSelect>
             </GridContainer>

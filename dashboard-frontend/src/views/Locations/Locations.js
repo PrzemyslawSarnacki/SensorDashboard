@@ -157,7 +157,7 @@ export default function Locations() {
                   onChange={handleChange}
                   >
               {list.map((sensor) => (
-                <MenuItem value={[sensor.id, sensor.name]}>{sensor.name}</MenuItem>
+                <MenuItem key={sensor.id} value={[sensor.id, sensor.name]}>{sensor.name}</MenuItem>
               ))}
                 </CustomSelect>
               {/* <FormHelperText>{name}</FormHelperText>
@@ -168,7 +168,7 @@ export default function Locations() {
         </GridContainer>
         <div>
               <h5 style={{textAlign: "center"}}>{name}</h5>
-      <IndividualMap id={id} setTooltipContent={setContent} />
+      <IndividualMap key={id} id={id} setTooltipContent={setContent} />
       <ReactTooltip>{content}</ReactTooltip>
     </div>
       </CardBody>
