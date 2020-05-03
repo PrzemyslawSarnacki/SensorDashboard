@@ -14,7 +14,9 @@ import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
 import Accessibility from "@material-ui/icons/Accessibility";
 import BugReport from "@material-ui/icons/BugReport";
+import SettingsInputComponent from "@material-ui/icons/SettingsInputComponent";
 import Code from "@material-ui/icons/Code";
+import ShutterSpeed from "@material-ui/icons/ShutterSpeed";
 import Cloud from "@material-ui/icons/Cloud";
 // core components
 import GridItem from "components/Grid/GridItem.js";
@@ -62,7 +64,7 @@ export class Dashboard extends React.Component {
   
   
   fetchData = () => {
-    axios.get("http://192.168.1.20:8000/api/sensor-detail/1/").then(res => {
+    axios.get("http://192.168.1.20:8000/api/sensor-detail/2/").then(res => {
       console.log(res);
       let tmpLabels = [];
       let tmpValues = [];
@@ -129,21 +131,17 @@ export class Dashboard extends React.Component {
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-                <Icon>content_copy</Icon>
+                <Icon>scatter_plot</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Used Space</p>
+              <p className={classes.cardCategory}>Last update</p>
               <h3 className={classes.cardTitle}>
-                {this.state.currentTime} <small>GB</small>
+                 <small>{this.state.currentTime}</small>
               </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <Danger>
-                  <Warning />
-                </Danger>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
-                  Get more space
-                </a>
+              <Update />
+                Last Update
               </div>
             </CardFooter>
           </Card>
@@ -152,15 +150,17 @@ export class Dashboard extends React.Component {
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
-                <Store />
+                <ShutterSpeed />
               </CardIcon>
-              <p className={classes.cardCategory}>Revenue</p>
-    <h3 className={classes.cardTitle}>{this.state.currentValue}</h3>
+              <p className={classes.cardCategory}>Newest value</p>
+                <h3 className={classes.cardTitle}>
+                  {this.state.currentValue}
+                </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <DateRange />
-                Last 24 Hours
+              <Update />
+                Last Update
               </div>
             </CardFooter>
           </Card>
@@ -169,15 +169,15 @@ export class Dashboard extends React.Component {
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
-                <Icon>info_outline</Icon>
+                <Icon>device_hub</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Fixed Issues</p>
-    <h3 className={classes.cardTitle}>{this.state.currentSensor}</h3>
+              <p className={classes.cardCategory}>Sensor ID</p>
+              <h3 className={classes.cardTitle}>{this.state.currentSensor}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <LocalOffer />
-                Tracked from Github
+              <Update />
+                Last Update
               </div>
             </CardFooter>
           </Card>
@@ -186,15 +186,15 @@ export class Dashboard extends React.Component {
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
-                <Accessibility />
+                <SettingsInputComponent />
               </CardIcon>
-              <p className={classes.cardCategory}>Followers</p>
+              <p className={classes.cardCategory}>Measurement ID</p>
     <h3 className={classes.cardTitle}>{this.state.currentNumber}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
                 <Update />
-                Just Updated
+                Last Update
               </div>
             </CardFooter>
           </Card>

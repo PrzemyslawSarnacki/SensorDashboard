@@ -21,12 +21,6 @@ export class IndividualMap extends React.Component {
       arrayLength: "",
     };
   }
-  
-  // clearComponent = () =>{
-  //   if (this.props.reset) {
-  //     markers = [];
-  //   }
-  // }
 
   fetchMap = () => {
     axios
@@ -73,7 +67,6 @@ export class IndividualMap extends React.Component {
       markers.pop();
 
     }  
-    // this.clearComponent();
 
   }
   render() {
