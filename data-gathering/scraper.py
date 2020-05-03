@@ -52,7 +52,7 @@ for country, sensor_type in COUNTRIES.items():
     s = Scraper(['database'], country, sensor_type)
     s.parse()
     s.store()
-    
+  
 # s.store()
 # if datetime.datetime.now().hour == 23:
 #     s.email()

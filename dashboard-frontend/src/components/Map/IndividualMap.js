@@ -110,6 +110,7 @@ export class IndividualMap extends React.Component {
               this.state.arrayLength === i + 1 ? (
                 <Marker key={name} coordinates={coordinates}>
                   <a href="/">
+
                     <g
                       fill="#9400D3"
                       stroke="#4B0082"
@@ -122,7 +123,7 @@ export class IndividualMap extends React.Component {
                         this.props.setTooltipContent("")
                       }}
                       strokeLinejoin="round"
-                      transform="translate(-12, -24)"
+                      transform="translate(-6, -12) scale(0.5)"
                     >
                       <circle cx="12" cy="10" r="3" fill="#ffffff" />
                       <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
@@ -132,7 +133,7 @@ export class IndividualMap extends React.Component {
               ) : (
                 <Marker key={name} coordinates={coordinates}>
                   <circle
-                    r={5}
+                    r={2}
                     fill="#9400D3"
                     stroke="#4B0082"
                     strokeWidth={1}
