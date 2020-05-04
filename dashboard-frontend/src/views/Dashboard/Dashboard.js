@@ -5,10 +5,6 @@ import ChartistGraph from "react-chartist";
 import { withStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
 import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
@@ -23,13 +19,12 @@ import GridContainer from "components/Grid/GridContainer.js";
 import Table from "components/Table/Table.js";
 import Tasks from "components/Tasks/Tasks.js";
 import CustomTabs from "components/CustomTabs/CustomTabs.js";
-import Danger from "components/Typography/Danger.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardIcon from "components/Card/CardIcon.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
-
+import Chart from "components/Chart/Chart.js";
 
 
 import { bugs, website, server } from "variables/general.js";
@@ -65,87 +60,9 @@ export class Dashboard extends React.Component {
   
     const { classes } = this.props;
   
+    
     return (
       <div>
-      <GridContainer>
-        <GridItem xs={12} sm={6} md={3}>
-        <Card>
-          <Chart id={2} name={"Poland Covid Sensor"}/>
-        </Card>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-          <Card>
-            <CardHeader color="warning" stats icon>
-              <CardIcon color="warning">
-                <Icon>scatter_plot</Icon>
-              </CardIcon>
-              <p className={classes.cardCategory}>Last update</p>
-              <h3 className={classes.cardTitle}>
-                 <small>{this.state.currentTime}</small>
-              </h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-              <Update />
-                Last Update
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-          <Card>
-            <CardHeader color="success" stats icon>
-              <CardIcon color="success">
-                <ShutterSpeed />
-              </CardIcon>
-              <p className={classes.cardCategory}>Newest value</p>
-                <h3 className={classes.cardTitle}>
-                  {this.state.currentValue}
-                </h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-              <Update />
-                Last Update
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-          <Card>
-            <CardHeader color="danger" stats icon>
-              <CardIcon color="danger">
-                <Icon>device_hub</Icon>
-              </CardIcon>
-              <p className={classes.cardCategory}>Sensor ID</p>
-              <h3 className={classes.cardTitle}>{this.state.currentSensor}</h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-              <Update />
-                Last Update
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-          <Card>
-            <CardHeader color="info" stats icon>
-              <CardIcon color="info">
-                <SettingsInputComponent />
-              </CardIcon>
-              <p className={classes.cardCategory}>Measurement ID</p>
-              <h3 className={classes.cardTitle}>{this.state.currentNumber}</h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-                <Update />
-                Last Update
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-      </GridContainer>
       <GridContainer>
         <GridItem xs={12} sm={12} md={4}>
           <Card chart>
@@ -221,6 +138,80 @@ export class Dashboard extends React.Component {
         </GridItem>
       </GridContainer>
       <GridContainer>
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="warning" stats icon>
+              <CardIcon color="warning">
+                <Icon>scatter_plot</Icon>
+              </CardIcon>
+              <p className={classes.cardCategory}>Last update</p>
+              <h3 className={classes.cardTitle}>
+                 <small>{this.state.currentTime}</small>
+              </h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+              <Update />
+                Last Update
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="success" stats icon>
+              <CardIcon color="success">
+                <ShutterSpeed />
+              </CardIcon>
+              <p className={classes.cardCategory}>Newest value</p>
+                <h3 className={classes.cardTitle}>
+                  {this.state.currentValue}
+                </h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+              <Update />
+                Last Update
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="danger" stats icon>
+              <CardIcon color="danger">
+                <Icon>device_hub</Icon>
+              </CardIcon>
+              <p className={classes.cardCategory}>Sensor ID</p>
+              <h3 className={classes.cardTitle}>{this.state.currentSensor}</h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+              <Update />
+                Last Update
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="info" stats icon>
+              <CardIcon color="info">
+                <SettingsInputComponent />
+              </CardIcon>
+              <p className={classes.cardCategory}>Measurement ID</p>
+              <h3 className={classes.cardTitle}>{this.state.currentNumber}</h3>
+            </CardHeader>
+            <CardFooter stats>
+              <div className={classes.stats}>
+                <Update />
+                Last Update
+              </div>
+            </CardFooter>
+          </Card>
+        </GridItem>
+      </GridContainer>
+      <GridContainer>
         <GridItem xs={12} sm={12} md={6}>
           <CustomTabs
             title="Tasks:"
@@ -283,6 +274,11 @@ export class Dashboard extends React.Component {
               />
             </CardBody>
           </Card>
+        </GridItem>
+        <GridItem xs={12} sm={12} md={12}>
+        <Card>
+          <Chart id={2} name={"Poland Covid Sensor"}/>
+        </Card>
         </GridItem>
       </GridContainer>
     </div>

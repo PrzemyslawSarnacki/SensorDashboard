@@ -5,16 +5,12 @@ import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 // @material-ui/icons
 import AddAlert from "@material-ui/icons/AddAlert";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 
-
 import GridContainer from "components/Grid/GridContainer.js";
-import Button from "components/CustomButtons/Button.js";
-import SnackbarContent from "components/Snackbar/SnackbarContent.js";
 import Card from "components/Card/Card.js";
 import Chart from "components/Chart/Chart.js";
 import CardHeader from "components/Card/CardHeader.js";
