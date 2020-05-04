@@ -12,7 +12,6 @@ import LocalOffer from "@material-ui/icons/LocalOffer";
 import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
 import BugReport from "@material-ui/icons/BugReport";
 import SettingsInputComponent from "@material-ui/icons/SettingsInputComponent";
 import Code from "@material-ui/icons/Code";
@@ -31,7 +30,6 @@ import CardIcon from "components/Card/CardIcon.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
-import {Line} from 'react-chartjs-2';
 
 
 import { bugs, website, server } from "variables/general.js";
@@ -43,7 +41,6 @@ import {
 } from "variables/charts.js";
 
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
-import axios from "axios";
 
 const useStyles = styles;
 
@@ -53,8 +50,6 @@ export class Dashboard extends React.Component {
     super(props)
   
     this.state = {
-      dataLabels: [],
-      dataValues: [],
       currentValue: "",
       currentTime: "",
       currentSensor: "",
@@ -63,71 +58,22 @@ export class Dashboard extends React.Component {
   }
   
   
-  fetchData = () => {
-    axios.get("http://192.168.1.20:8000/api/sensor-detail/2/").then(res => {
-      console.log(res);
-      let tmpLabels = [];
-      let tmpValues = [];
-      res.data.forEach(row => {
-        tmpLabels.push(row.time)
-        tmpValues.push(row.value)
-      });
-      this.setState({
-        dataLabels: tmpLabels,
-        dataValues: tmpValues,
-        currentTime: tmpLabels[tmpLabels.length-1],
-        currentValue: tmpValues[tmpValues.length-1],
-        currentSensor: res.data[res.data.length-1].sensor_type,
-        currentNumber: res.data[res.data.length-1].id,
-      });
-    });
-  }
-  
   componentDidMount() {
-    this.fetchData();
-    this.interval = setInterval(() => this.fetchData(), 3000);
   }
     
   render() {
   
     const { classes } = this.props;
-    const { ...rest } = this.props;
-    const data = {
-      labels: this.state.dataLabels,
-      datasets: [
-        {
-          label: 'Sensor X Dataset',
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: 'rgba(75,192,192,0.4)',
-          borderColor: 'rgba(75,192,192,1)',
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: 'rgba(75,192,192,1)',
-          pointBackgroundColor: '#fff',
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-          pointHoverBorderColor: 'rgba(220,220,220,1)',
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: this.state.dataValues
-        }
-      ]
-    };
   
     return (
       <div>
       <GridContainer>
-
-        <Card>
-          <Line data={data} />
-        </Card>
         <GridItem xs={12} sm={6} md={3}>
-
+        <Card>
+          <Chart id={2} name={"Poland Covid Sensor"}/>
+        </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={3}>
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
@@ -189,7 +135,7 @@ export class Dashboard extends React.Component {
                 <SettingsInputComponent />
               </CardIcon>
               <p className={classes.cardCategory}>Measurement ID</p>
-    <h3 className={classes.cardTitle}>{this.state.currentNumber}</h3>
+              <h3 className={classes.cardTitle}>{this.state.currentNumber}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
