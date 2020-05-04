@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import MenuItem from '@material-ui/core/MenuItem';
 // core components
+import CustomSelect from "components/CustomSelect/CustomSelect.js";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import Table from "components/Table/Table.js";
@@ -9,6 +11,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import axios from 'axios';
+import ValueTable from "components/Table/ValueTable";
 
 const styles = {
   cardCategoryWhite: {
@@ -45,41 +48,39 @@ const useStyles = makeStyles(styles);
 export default function TableList() {
 
   const classes = useStyles();
-  const [dataID, setDataID] = useState([]);
-  const [dataLabels, setDataLabels] = useState([]);
-  const [dataValues, setDataValues] = useState([]);
+  const [list, setList] = useState([]);
+  const [id, setId] = useState(2);
+  const [name, setName] = useState("Poland Covid Sensor");
 
   useEffect(() => {
-    fetchData();
-  }, [])
+    fetchList();
+  }, []);
 
-  const fetchData = () => {
+  const fetchList = () => {
+    console.log("fetching data");
     axios
-      .get(`http://192.168.1.20:8000/api/sensor-detail/2/`)
+      .get(`http://192.168.1.20:8000/api/sensor-list/`)
       .then((res) => {
-        let tmpLabels = [];
-        let tmpValues = [];
-        let tmpID = [];
-        res.data.forEach(row => {
-          tmpLabels.push(row.time)
-          tmpValues.push(row.value)
-          tmpID.push(row.id)
-        });
-        setDataLabels(tmpLabels)
-        setDataValues(tmpValues)
-        setDataID(tmpID)
-        console.log(tmpID)
+        console.log(res.data);
+        setList(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const handleChange = (event) => {
+    if (event.target.value[1] !== undefined) {
+      setId(event.target.value[0]);
+      setName(event.target.value[1]);
+    }
+  };
 
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
         <Card>
+        
           <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>Data in form of Table</h4>
             <p className={classes.cardCategoryWhite}>
@@ -87,21 +88,29 @@ export default function TableList() {
             </p>
           </CardHeader>
           <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["ID", "Date", "Value", "City", "Salary"]}
-              tableData={[
-                [dataID[0], dataLabels[0], dataValues[0], "Oud-Turnhout", "$36,738"],
-                [dataID[1], dataLabels[1], dataValues[1], "Sinaai-Waas", "$23,789"],
-                [dataID[2], dataLabels[2], dataValues[2], "Baileux", "$56,142"],
-                [dataID[3], dataLabels[3], dataValues[3], "Overland Park", "$38,735"],
-                [dataID[0], "Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
-                [dataID[0], "Mason Porter", "Chile", "Gloucester", "$78,615"]
-              ]}
-            />
-
+          <GridContainer>
+          <GridItem xs={12} sm={12} md={10} lg={8}>
+                <CustomSelect
+                  id="company-disabled"
+                  labelText="Choose"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    // value: "name",
+                    onChange: handleChange,
+                  }}
+                  
+                  onChange={handleChange}
+                  >
+              {list.map((sensor) => (
+                <MenuItem key={sensor.id} value={[sensor.id, sensor.name]}>{sensor.name}</MenuItem>
+              ))}
+                </CustomSelect>
+                </GridItem>
+            </GridContainer>
             <br></br>
-        
+            <ValueTable id={id} name={name}/>
             <p className={classes.cardTitleWhite}>Export as csv file</p>
           </CardBody>
         </Card>
