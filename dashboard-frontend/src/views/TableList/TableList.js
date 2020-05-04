@@ -13,6 +13,8 @@ import CardBody from "components/Card/CardBody.js";
 import axios from 'axios';
 import ValueTable from "components/Table/ValueTable";
 
+
+
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
@@ -111,10 +113,11 @@ export default function TableList() {
             </GridContainer>
             <br></br>
             <ValueTable id={id} name={name}/>
-            <p className={classes.cardTitleWhite}>Export as csv file</p>
           </CardBody>
         </Card>
       </GridItem>
     </GridContainer>
   );
 }
+
+head.concat(arr)
