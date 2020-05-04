@@ -1,11 +1,6 @@
 import React, {useState, useEffect} from "react";
 // core components
-import GridItem from "components/Grid/GridItem.js";
-import GridContainer from "components/Grid/GridContainer.js";
 import Table from "components/Table/Table.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardBody from "components/Card/CardBody.js";
 import axios from 'axios';
 import { CSVLink } from "react-csv";
 
@@ -40,7 +35,7 @@ export default function ValueTable(props) {
                 tableHead={["ID", "Date", "Value"]}
                 tableData={data}
             />
-            <p className={classes.cardTitleWhite}>Export as csv file</p>
+            <p>Export as csv file</p>
             <CSVLink data={data} headers={["ID", "Date", "Value"]}>
               Download
             </CSVLink>

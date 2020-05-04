@@ -6,13 +6,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CustomSelect from "components/CustomSelect/CustomSelect.js";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
-import Table from "components/Table/Table.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
-import axios from 'axios';
 import ValueTable from "components/Table/ValueTable";
-
+import axios from 'axios';
 
 
 const styles = {
@@ -119,5 +117,3 @@ export default function TableList() {
     </GridContainer>
   );
 }
-
-head.concat(arr)

@@ -1,12 +1,8 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from "react";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from '@material-ui/core/MenuItem';
-// @material-ui/icons
-import AddAlert from "@material-ui/icons/AddAlert";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 
