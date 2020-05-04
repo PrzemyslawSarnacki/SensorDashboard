@@ -40,7 +40,6 @@ export class IndividualMap extends React.Component {
             markers[this.state.arrayLength - 1].coordinates[0] !==
             row.sensor_location.longtitude
           ) {
-            // console.log(markers[this.state.arrayLength-1].coordinates[0])
             markers.push({
               name: row.name,
               coordinates: [

@@ -57,11 +57,9 @@ export default function TableList() {
   }, []);
 
   const fetchList = () => {
-    console.log("fetching data");
     axios
       .get(`http://192.168.1.20:8000/api/sensor-list/`)
       .then((res) => {
-        console.log(res.data);
         setList(res.data);
       })
       .catch((err) => {

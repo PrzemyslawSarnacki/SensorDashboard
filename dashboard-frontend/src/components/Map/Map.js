@@ -14,12 +14,9 @@ const geoUrl =
   
   const MapChart = ({ setTooltipContent }) => {
     const [markers, setMarkers] = useState([]);
-    // const markers = [
-    // ];
   
   const fetchMap = () => {
     axios.get("http://192.168.1.20:8000/api/sensor-list/").then(res => {
-      console.log(res);
       res.data.forEach(row => {
         setMarkers(
           oldArray => [...oldArray, 
@@ -38,7 +35,6 @@ const geoUrl =
 
   useEffect(() => {
     fetchMap();
-    console.log(markers)
   }, []); 
 
     

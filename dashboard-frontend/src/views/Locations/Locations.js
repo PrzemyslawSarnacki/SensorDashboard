@@ -1,20 +1,13 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from "react";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 // @material-ui/icons
-import AddAlert from "@material-ui/icons/AddAlert";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 
 import GridContainer from "components/Grid/GridContainer.js";
-import Button from "components/CustomButtons/Button.js";
-import SnackbarContent from "components/Snackbar/SnackbarContent.js";
-import Snackbar from "components/Snackbar/Snackbar.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CustomSelect from "components/CustomSelect/CustomSelect.js";
@@ -97,16 +90,13 @@ export default function Locations() {
   const [name, setName] = useState("Name");
 
   useEffect(() => {
-    console.log(name)
     fetchList();
   }, []);
 
   const fetchList = () => {
-    console.log("fetching data");
     axios
       .get("http://192.168.1.20:8000/api/sensor-list/")
       .then((res) => {
-        console.log(res.data);
         setList(res.data);
       })
       .catch((err) => {
@@ -115,7 +105,6 @@ export default function Locations() {
   };
 
   const handleChange = (event) => {
-    console.log(name);
     if (event.target.value[1] !== undefined) {
       setId(event.target.value[0]);
       setName(event.target.value[1]);
@@ -150,7 +139,6 @@ export default function Locations() {
                     fullWidth: true
                   }}
                   inputProps={{
-                    // value: "name",
                     onChange: handleChange,
                   }}
                   
@@ -160,8 +148,6 @@ export default function Locations() {
                 <MenuItem key={sensor.id} value={[sensor.id, sensor.name]}>{sensor.name}</MenuItem>
               ))}
                 </CustomSelect>
-              {/* <FormHelperText>{name}</FormHelperText>
-              </FormControl> */}
  
             </GridContainer>
           </GridItem>
