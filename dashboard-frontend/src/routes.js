@@ -22,6 +22,7 @@ import Person from "@material-ui/icons/Person";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import Navigation from "@material-ui/icons/Navigation";
 import BubbleChart from "@material-ui/icons/BubbleChart";
+import Edit from "@material-ui/icons/Edit";
 import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
@@ -35,6 +36,7 @@ import Typography from "views/Typography/Typography.js";
 import Maps from "views/Maps/Maps.js";
 import Locations from "views/Locations/Locations.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
+import UpdateLocation from "views/UpdateLocation/UpdateLocation.js";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
 // core components/views for RTL layout
 
@@ -58,6 +60,13 @@ const dashboardRoutes = [
     name: "User Profile",
     icon: Person,
     component: UserProfile,
+    layout: "/admin"
+  },
+  {
+    path: "/update-location",
+    name: "Update Location",
+    icon: Edit,
+    component: UpdateLocation,
     layout: "/admin"
   },
   {
