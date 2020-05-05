@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 // @material-ui/icons
 import LocationCity from "@material-ui/icons/LocationCity";
 // core components
+import InputFields from "components/InputFields/InputFields.js";
 import CustomSelect from "components/CustomSelect/CustomSelect.js";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -17,6 +18,7 @@ import Snackbar from "components/Snackbar/Snackbar.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import axios from 'axios';
+
 
 const styles = {
     cardCategoryWhite: {
@@ -46,48 +48,10 @@ export default function UserProfile() {
         fetchList();
     }, []);
 
-    useEffect(() => {
-        getPreviousLocation();
-    }, [id]);
 
     const [list, setList] = useState([]);
-    const [tc, setTC] = useState(false);
-    const [latitude, setLatitude] = useState(0);
-    const [longtitude, setLongtitude] = useState(0);
-    const [city, setCity] = useState("");
-    const [name, setName] = useState("");
     const [id, setId] = useState(1);
 
-    const updateLocation = () => {
-        axios
-            .put(`http://192.168.1.20:8000/api/update-location/${id}/`, { name: name, city: city, latitude: latitude, longtitude: longtitude }, {
-                "Content-Type": "application/json",
-            })
-            .then((res) => {
-                showNotification();
-                console.log("success")
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
-    const getPreviousLocation = () => {
-        axios
-            .get(`http://192.168.1.20:8000/api/sensor-location/${id}/`)
-            .then((res) => {
-                res.data.forEach((row) => {
-                    console.log(row.sensor_location.city);
-                    setLatitude(row.sensor_location.latitude);
-                    setLongtitude(row.sensor_location.longtitude);
-                    setCity(row.sensor_location.city);
-                    setName(row.sensor_location.name);
-                })
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
 
     const fetchList = () => {
         axios
@@ -98,15 +62,6 @@ export default function UserProfile() {
             .catch((err) => {
                 console.log(err);
             });
-    };
-
-    const showNotification = () => {
-        if (!tc) {
-            setTC(true);
-            setTimeout(function () {
-                setTC(false);
-            }, 6000);
-        }
     };
 
     const handleChange = (event) => {
@@ -144,83 +99,8 @@ export default function UserProfile() {
                                         </CustomSelect>
                                 </GridItem>
                             </GridContainer>
-                            <GridContainer>
-                                <GridItem xs={12} sm={12} md={6}>
-                                    <CustomInput
-                                        labelText="Name"
-                                        id="name"
-                                        inputProps={{
-                                            defaultValue: name,
-                                            name: "name",
-                                        }}
-                                        formControlProps={{
-                                            onChange: e => setName(e.target.value),
-                                            fullWidth: true
-                                        }}
-                                    />
-                                    <p>{name}</p>
-                                </GridItem>
-                                <GridItem xs={12} sm={12} md={6}>
-                                    <CustomInput
-                                        labelText="City"
-                                        id="city"
-                                        inputProps={{
-                                            defaultValue: city,
-                                            name: "city",
-                                        }}
-                                        formControlProps={{
-                                            onChange: e => setCity(e.target.value),
-                                            fullWidth: true
-                                        }}
-                                    />
-                                    <p>{city}</p>
-                                </GridItem>
-                            </GridContainer>
-                            <GridContainer>
-                                <GridItem xs={12} sm={12} md={6}>
-                                    <CustomInput
-                                        labelText="Latitude"
-                                        id="latitude"
-                                        inputProps={{
-                                            defaultValue: latitude,
-                                            name: "latitude",
-                                        }}
-                                        formControlProps={{
-                                            onChange: e => setLatitude(e.target.value),
-                                            fullWidth: true
-                                        }}
-                                    />
-                                    <p>{latitude}</p>
-                                </GridItem>
-                                <GridItem xs={12} sm={12} md={6}>
-                                    <CustomInput
-                                        labelText="Longtitude"
-                                        id="longtitude"
-                                        inputProps={{
-                                            defaultValue: longtitude,
-                                            name: "longtitude",
-                                        }}
-                                        formControlProps={{
-                                            onChange: e => setLongtitude(e.target.value),
-                                            fullWidth: true
-                                        }}
-                                    />
-                                    <p>{longtitude}</p>
-                                </GridItem>
-                            </GridContainer>
+                            <InputFields id={id}/>
                         </CardBody>
-                        <CardFooter>
-                            <Button onClick={() => updateLocation()} color="primary">Update Location</Button>
-                            <Snackbar
-                                place="tc"
-                                color="info"
-                                icon={LocationCity}
-                                message="Location updated successfully!."
-                                open={tc}
-                                closeNotification={() => setTC(false)}
-                                close
-                            />
-                        </CardFooter>
                     </Card>
                 </GridItem>
             </GridContainer>
