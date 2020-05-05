@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from '@material-ui/core/MenuItem';
 // @material-ui/icons
-import AddAlert from "@material-ui/icons/AddAlert";
 import LocationCity from "@material-ui/icons/LocationCity";
 // core components
+import CustomSelect from "components/CustomSelect/CustomSelect.js";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
@@ -17,7 +17,6 @@ import Snackbar from "components/Snackbar/Snackbar.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import axios from 'axios';
-import avatar from "assets/img/faces/marc.jpg";
 
 const styles = {
     cardCategoryWhite: {
@@ -42,10 +41,16 @@ const useStyles = makeStyles(styles);
 
 export default function UserProfile() {
 
+
+    useEffect(() => {
+        fetchList();
+    }, []);
+
     useEffect(() => {
         getPreviousLocation();
     }, [id]);
 
+    const [list, setList] = useState([]);
     const [tc, setTC] = useState(false);
     const [latitude, setLatitude] = useState(0);
     const [longtitude, setLongtitude] = useState(0);
@@ -84,14 +89,31 @@ export default function UserProfile() {
             });
     };
 
+    const fetchList = () => {
+        axios
+            .get("http://192.168.1.20:8000/api/sensor-list/")
+            .then((res) => {
+                setList(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     const showNotification = () => {
-            if (!tc) {
-              setTC(true);
-              setTimeout(function() {
+        if (!tc) {
+            setTC(true);
+            setTimeout(function () {
                 setTC(false);
-              }, 6000);
-            }
-      };
+            }, 6000);
+        }
+    };
+
+    const handleChange = (event) => {
+        if (event.target.value !== undefined) {
+            setId(event.target.value);
+        }
+    };
 
     const classes = useStyles();
     return (
@@ -104,6 +126,24 @@ export default function UserProfile() {
                             <p className={classes.cardCategoryWhite}>Update your sensor location</p>
                         </CardHeader>
                         <CardBody>
+                            <GridContainer justify="center">
+                                <GridItem xs={12} sm={12} md={6} lg={6}>
+                                        <CustomSelect
+                                            id="company-disabled"
+                                            labelText="Choose"
+                                            formControlProps={{
+                                                fullWidth: true
+                                            }}
+                                            inputProps={{
+                                                onChange: handleChange,
+                                            }}
+                                        >
+                                            {list.map((sensor) => (
+                                                <MenuItem key={sensor.id} value={sensor.id}>{sensor.name}</MenuItem>
+                                            ))}
+                                        </CustomSelect>
+                                </GridItem>
+                            </GridContainer>
                             <GridContainer>
                                 <GridItem xs={12} sm={12} md={6}>
                                     <CustomInput
