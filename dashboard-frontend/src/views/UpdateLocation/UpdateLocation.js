@@ -39,10 +39,14 @@ const useStyles = makeStyles(styles);
 export default function UserProfile() {
 
     const updateLocation = () => {
-
+        // axios.defaults.headers = {
+        //     "Media-Type": "application/json",
+        //   };
         axios
             // .post(`http://192.168.1.20:8000/api/update-location/${props.id}/`)
-            .post(`http://192.168.1.20:8000/api/update-location/${2}/`, {name: "Warsaw Sensor Center", city: "Warsaw", latitude: 51.022, longtitude: 21.001})
+            .put(`http://192.168.1.20:8000/api/update-location/${1}/`, {name: "Warsaw Sensor Center", city: "Warsaw", latitude: 51.222, longtitude: 21.001}, {
+                "Content-Type": "application/json",
+              })
             .then((res) => {
                 console.log("success")
             })
