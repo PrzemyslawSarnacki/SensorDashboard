@@ -72,7 +72,7 @@ export default function UserProfile() {
     const classes = useStyles();
     return (
         <div>
-            <GridContainer>
+            <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={8}>
                     <Card>
                         <CardHeader color="primary">
