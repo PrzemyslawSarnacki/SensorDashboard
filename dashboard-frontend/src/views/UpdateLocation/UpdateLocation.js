@@ -48,7 +48,6 @@ export default function UserProfile() {
         fetchList();
     }, []);
 
-
     const [list, setList] = useState([]);
     const [id, setId] = useState(1);
 

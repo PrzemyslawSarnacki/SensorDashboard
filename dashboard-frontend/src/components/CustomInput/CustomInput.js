@@ -59,6 +59,7 @@ export default function CustomInput(props) {
           underline: underlineClasses
         }}
         id={id}
+        className={classes.inputColor}
         {...inputProps}
       />
       {error ? (

@@ -2,9 +2,11 @@ import {
   primaryColor,
   dangerColor,
   successColor,
+  whiteColor,
   grayColor,
   defaultFont
 } from "assets/jss/material-dashboard-react.js";
+import { blackColor } from "assets/jss/material-dashboard-react";
 
 const customInputStyle = {
   disabled: {
@@ -59,7 +61,11 @@ const customInputStyle = {
   marginTop: {
     marginTop: "16px"
   },
+  inputColor: {
+    color: whiteColor + " !important",
+  },
   formControl: {
+    color: grayColor[3] + " !important",
     paddingBottom: "10px",
     margin: "27px 0 0 0",
     position: "relative",
