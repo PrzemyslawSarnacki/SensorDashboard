@@ -23,12 +23,14 @@ import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import Navigation from "@material-ui/icons/Navigation";
 import BubbleChart from "@material-ui/icons/BubbleChart";
 import Edit from "@material-ui/icons/Edit";
+import PlusOne from "@material-ui/icons/PlusOne";
 import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 import Language from "@material-ui/icons/Language";
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
+import AddSensor from "views/AddSensor/AddSensor.js";
 import Charts from "views/Charts/Charts.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 import TableList from "views/TableList/TableList.js";
@@ -67,6 +69,13 @@ const dashboardRoutes = [
     name: "Update Location",
     icon: Edit,
     component: UpdateLocation,
+    layout: "/admin"
+  },
+  {
+    path: "/add-sensor",
+    name: "Add Sensor",
+    icon: PlusOne,
+    component: AddSensor,
     layout: "/admin"
   },
   {
