@@ -16,7 +16,7 @@ import axios from 'axios';
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
-      color: "rgba(0,0,0,.62)",
+      color: "rgba(255,255,255,.62)",
       margin: "0",
       fontSize: "14px",
       marginTop: "0",
@@ -75,10 +75,7 @@ export default function TableList() {
   };
 
   return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card>
-        
+        <Card> 
           <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>Data in form of Table</h4>
             <p className={classes.cardCategoryWhite}>
@@ -86,7 +83,7 @@ export default function TableList() {
             </p>
           </CardHeader>
           <CardBody>
-          <GridContainer>
+          <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={10} lg={8}>
                 <CustomSelect
                   id="company-disabled"
@@ -111,7 +108,5 @@ export default function TableList() {
             <ValueTable id={id} name={name}/>
           </CardBody>
         </Card>
-      </GridItem>
-    </GridContainer>
   );
 }

@@ -203,6 +203,7 @@ export default function UserProfile() {
 
                         </CardBody>
                         <CardFooter>
+
                             <Button onClick={() => addSensor()} color="primary">Add Sensor</Button>
                             <Snackbar
                                 place="tc"
@@ -212,7 +213,7 @@ export default function UserProfile() {
                                 open={tc}
                                 closeNotification={() => setTC(false)}
                                 close
-                            />
+                                />
                         </CardFooter>
                     </Card>
                 </GridItem>
