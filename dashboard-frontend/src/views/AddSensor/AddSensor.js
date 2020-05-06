@@ -43,15 +43,49 @@ const useStyles = makeStyles(styles);
 
 export default function UserProfile() {
 
-    const [list, setList] = useState([]);
-    const [id, setId] = useState(1);
+    const [name, setName] = useState("");
+    const [city, setCity] = useState("");
+    const [latitude, setLatitude] = useState(0);
+    const [longtitude, setLongtitude] = useState(0);
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(0);
+    const [unit, setUnit] = useState("");
+    const [description, setDescription] = useState("");
+    const [tc, setTC] = useState(false);
 
 
-    const handleChange = (event) => {
-        if (event.target.value !== undefined) {
-            setId(event.target.value);
+    const addSensor = () => {
+        axios
+            .post(`http://192.168.1.20:8000/api/add-sensor/`, {
+                name: name,
+                sensor_location: { name: name, city: city, latitude: latitude, longtitude: longtitude },
+                code: name.replace(" ", "-").toLowerCase(),
+                min_value: min,
+                max_value: max,
+                unit: unit,
+                description: description
+            },
+                {
+                    "Content-Type": "application/json",
+                })
+            .then((res) => {
+                showNotification();
+                console.log("success")
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const showNotification = () => {
+        if (!tc) {
+            setTC(true);
+            setTimeout(function () {
+                setTC(false);
+            }, 6000);
         }
     };
+
 
     const classes = useStyles();
     return (
@@ -70,6 +104,7 @@ export default function UserProfile() {
                                         labelText="Name"
                                         id="name"
                                         formControlProps={{
+                                            onChange: e => setName(e.target.value),
                                             fullWidth: true
                                         }}
                                         inputProps={{
@@ -81,6 +116,7 @@ export default function UserProfile() {
                                         labelText="City"
                                         id="city"
                                         formControlProps={{
+                                            onChange: e => setCity(e.target.value),
                                             fullWidth: true
                                         }}
                                     />
@@ -90,6 +126,7 @@ export default function UserProfile() {
                                         labelText="Latitude"
                                         id="latitude"
                                         formControlProps={{
+                                            onChange: e => setLatitude(e.target.value),
                                             fullWidth: true
                                         }}
                                     />
@@ -101,6 +138,8 @@ export default function UserProfile() {
                                         labelText="Longtitude"
                                         id="longtitude"
                                         formControlProps={{
+                                            onChange: e => setLongtitude(e.target.value),
+
                                             fullWidth: true
                                         }}
                                         inputProps={{
@@ -112,6 +151,8 @@ export default function UserProfile() {
                                         labelText="Min Value"
                                         id="min-value"
                                         formControlProps={{
+                                            onChange: e => setMin(e.target.value),
+
                                             fullWidth: true
                                         }}
                                     />
@@ -121,6 +162,8 @@ export default function UserProfile() {
                                         labelText="Max Value"
                                         id="max-value"
                                         formControlProps={{
+                                            onChange: e => setMax(e.target.value),
+
                                             fullWidth: true
                                         }}
                                     />
@@ -133,6 +176,7 @@ export default function UserProfile() {
                                         labelText="Unit"
                                         id="unit"
                                         formControlProps={{
+                                            onChange: e => setUnit(e.target.value),
                                             fullWidth: true
                                         }}
                                     />
@@ -146,6 +190,7 @@ export default function UserProfile() {
                                         labelText="Description"
                                         id="description"
                                         formControlProps={{
+                                            onChange: e => setDescription(e.target.value),
                                             fullWidth: true
                                         }}
                                         inputProps={{
@@ -157,9 +202,18 @@ export default function UserProfile() {
                             </GridContainer>
 
                         </CardBody>
-                    <CardFooter>
-                        <Button color="primary">Add Sensor</Button>
-                    </CardFooter>
+                        <CardFooter>
+                            <Button onClick={() => addSensor()} color="primary">Add Sensor</Button>
+                            <Snackbar
+                                place="tc"
+                                color="info"
+                                icon={LocationCity}
+                                message="Sensor Added successfully!."
+                                open={tc}
+                                closeNotification={() => setTC(false)}
+                                close
+                            />
+                        </CardFooter>
                     </Card>
                 </GridItem>
             </GridContainer>
