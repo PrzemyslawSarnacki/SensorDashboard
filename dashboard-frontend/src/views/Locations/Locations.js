@@ -87,7 +87,7 @@ export default function Locations() {
   const [content, setContent] = useState("");
   const [list, setList] = useState([]);
   const [id, setId] = useState(1);
-  const [name, setName] = useState("Name");
+  const [name, setName] = useState("Warsaw Temp Sensor");
 
   useEffect(() => {
     fetchList();

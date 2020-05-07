@@ -27,6 +27,7 @@ export class IndividualMap extends React.Component {
       .get(`http://192.168.1.20:8000/api/sensor-location/${this.props.id}/`)
       .then((res) => {
         res.data.forEach((row) => {
+          console.log(markers);
           if (markers.length < 1) {
             markers.push({
               name: row.name,
@@ -36,6 +37,12 @@ export class IndividualMap extends React.Component {
               ],
               id: row.id,
             });
+          } else if (
+            markers
+          ) {
+
+          
+
           } else if (
             markers[this.state.arrayLength - 1].coordinates[0] !==
             row.sensor_location.longtitude
@@ -48,6 +55,21 @@ export class IndividualMap extends React.Component {
               ],
               id: row.id,
             });
+          } else if (
+            markers[0].coordinates[0] !==
+            row.sensor_location.longtitude
+          ) {
+            markers.push({
+              name: row.name,
+              coordinates: [
+                row.sensor_location.longtitude,
+                row.sensor_location.latitude,
+              ],
+              id: row.id,
+            });
+          }
+          else{
+            console.log(markers);
           }
         });
         this.setState({ arrayLength: markers.length });
@@ -61,7 +83,7 @@ export class IndividualMap extends React.Component {
 
   componentDidUpdate() {
 
-    if (markers[this.state.arrayLength-1].id !==  this.props.id){
+    if (markers[this.state.arrayLength-1].id !== this.props.id){
       
       markers.pop();
 
