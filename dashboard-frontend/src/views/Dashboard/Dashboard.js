@@ -25,6 +25,7 @@ import CardIcon from "components/Card/CardIcon.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import Chart from "components/Chart/Chart.js";
+import ValueTable from "components/Table/ValueTable.js";
 
 
 import { bugs, website, server } from "variables/general.js";
@@ -45,10 +46,10 @@ export class Dashboard extends React.Component {
     super(props)
   
     this.state = {
-      currentValue: "",
-      currentTime: "",
-      currentSensor: "",
-      currentNumber: "",
+      currentValue: "110",
+      currentTime: "Today",
+      currentSensor: "2",
+      currentNumber: "110",
     }
   }
   
@@ -76,12 +77,12 @@ export class Dashboard extends React.Component {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Daily Sales</h4>
+              <h4 className={classes.cardTitleWhite}>Covid Cases</h4>
               <p className={classes.cardCategory}>
                 <span className={classes.successText}>
                   <ArrowUpward className={classes.upArrowCardCategory} /> 55%
                 </span>{" "}
-                increase in today sales.
+                increase in cases.
               </p>
             </CardBody>
             <CardFooter chart>
@@ -104,12 +105,12 @@ export class Dashboard extends React.Component {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
+              <h4 className={classes.cardTitleWhite}>CO2 Stats</h4>
+              <p className={classes.cardCategory}>Monthly Stats for Warsaw</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> campaign sent 2 days ago
+                <AccessTime /> updated 2 days ago
               </div>
             </CardFooter>
           </Card>
@@ -126,12 +127,12 @@ export class Dashboard extends React.Component {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Completed Tasks</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
+              <h4 className={classes.cardTitleWhite}>Temperature Values</h4>
+              <p className={classes.cardCategory}>Last Temperature Measurements</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> campaign sent 2 days ago
+                <AccessTime /> updated 2 minutes ago
               </div>
             </CardFooter>
           </Card>
@@ -145,7 +146,7 @@ export class Dashboard extends React.Component {
                 <Icon>scatter_plot</Icon>
               </CardIcon>
               <p className={classes.cardCategory}>Last update</p>
-              <h3 className={classes.cardTitle}>
+              <h3 className={classes.CardHeader}>
                  <small>{this.state.currentTime}</small>
               </h3>
             </CardHeader>
@@ -164,7 +165,7 @@ export class Dashboard extends React.Component {
                 <ShutterSpeed />
               </CardIcon>
               <p className={classes.cardCategory}>Newest value</p>
-                <h3 className={classes.cardTitle}>
+                <h3 className={classes.CardHeader}>
                   {this.state.currentValue}
                 </h3>
             </CardHeader>
@@ -183,7 +184,7 @@ export class Dashboard extends React.Component {
                 <Icon>device_hub</Icon>
               </CardIcon>
               <p className={classes.cardCategory}>Sensor ID</p>
-              <h3 className={classes.cardTitle}>{this.state.currentSensor}</h3>
+              <h3 className={classes.CardHeader}>{this.state.currentSensor}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -192,6 +193,7 @@ export class Dashboard extends React.Component {
               </div>
             </CardFooter>
           </Card>
+          
         </GridItem>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
@@ -200,7 +202,7 @@ export class Dashboard extends React.Component {
                 <SettingsInputComponent />
               </CardIcon>
               <p className={classes.cardCategory}>Measurement ID</p>
-              <h3 className={classes.cardTitle}>{this.state.currentNumber}</h3>
+              <h3 className={classes.CardHeader}>{this.state.currentNumber}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -222,8 +224,8 @@ export class Dashboard extends React.Component {
                 tabIcon: BugReport,
                 tabContent: (
                   <Tasks
-                    checkedIndexes={[0, 3]}
-                    tasksIndexes={[0, 1, 2, 3]}
+                    checkedIndexes={[0, 3, 7]}
+                    tasksIndexes={[0, 1, 2, 3, 4, 5, 6, 7, 8]}
                     tasks={bugs}
                   />
                 )
@@ -256,22 +258,13 @@ export class Dashboard extends React.Component {
         <GridItem xs={12} sm={12} md={6}>
           <Card>
             <CardHeader color="warning">
-              <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
+              <h4 className={classes.cardTitleWhite}>Tables</h4>
               <p className={classes.cardCategoryWhite}>
-                New employees on 15th September, 2016
+                Data in Form of Table
               </p>
             </CardHeader>
             <CardBody>
-              <Table
-                tableHeaderColor="warning"
-                tableHead={["ID", "Name", "Salary", "Country"]}
-                tableData={[
-                  ["1", "Dakota Rice", "$36,738", "Niger"],
-                  ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                  ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                  ["4", "Philip Chaney", "$38,735", "Korea, South"]
-                ]}
-              />
+              <ValueTable id={2}/>
             </CardBody>
           </Card>
         </GridItem>

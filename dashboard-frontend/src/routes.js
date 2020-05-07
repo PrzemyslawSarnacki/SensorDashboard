@@ -79,13 +79,6 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/typography",
-    name: "Typography",
-    icon: LibraryBooks,
-    component: Typography,
-    layout: "/admin"
-  },
-  {
     path: "/maps",
     name: "Maps",
     icon: LocationOn,
@@ -97,13 +90,6 @@ const dashboardRoutes = [
     name: "Locations",
     icon: Navigation,
     component: Locations,
-    layout: "/admin"
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: Notifications,
-    component: NotificationsPage,
     layout: "/admin"
   },
   {
