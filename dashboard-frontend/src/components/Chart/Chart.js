@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import axios from "axios";
 
@@ -9,7 +10,9 @@ export default function Char(props){
 
     const [dataLabels, setDataLabels] = useState([]);
     const [dataValues, setDataValues] = useState([]);
+    const [loading, setLoading] = useState(false);
   
+
     useEffect(() => {
         fetchData();
       }, []);
@@ -47,7 +50,8 @@ export default function Char(props){
       };
     
     const fetchData = () => {
-        axios
+      setLoading(true);
+      axios
           .get(`http://192.168.1.20:8000/api/sensor-detail/${props.id}/`)
           .then((res) => {
             let tmpLabels = [];
@@ -57,7 +61,8 @@ export default function Char(props){
               tmpValues.push(row.value)
             });
             setDataLabels(tmpLabels)
-            setDataValues(tmpValues)     
+            setDataValues(tmpValues)
+            setLoading(false);
           })
           .catch((err) => {
             console.log(err);
@@ -65,9 +70,24 @@ export default function Char(props){
       };
     
 return(
-    <div>
+  <div>
+
+  {loading ? (
+    <div style={{textAlign: "center"}}>
+    <CircularProgress />
+    </div>
+
+) :
+
+(
+  
+  
+  <div>
         <h5 style={{textAlign: "center"}}>{props.name}</h5>
         <Line data={data} />
     </div>
+    )
+  }
+  </div>
 );
 }

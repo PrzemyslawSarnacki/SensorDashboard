@@ -6,6 +6,8 @@ import {
   Geography,
   Marker,
 } from "react-simple-maps";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import axios from "axios";
 
 const geoUrl =
