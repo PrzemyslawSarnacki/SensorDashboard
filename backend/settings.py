@@ -25,11 +25,11 @@ SECRET_KEY = 'h96_fe3y5*t)!#9l_+k@bx%kswv7(%_qe)epf!h)5e%b48osdp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'https://sensor-dashboards.herokuapp.com']
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
+    'http://localhost:3000', 'https://sensor-dashboards.herokuapp.com'
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -133,3 +133,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
