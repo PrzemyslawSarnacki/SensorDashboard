@@ -90,12 +90,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'sensor',
-        'USER': 'sensoruser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5433',
+        'USER': 'przemyslaw',
+        'PASSWORD': 'przemyslaw',
+        'HOST': 'database-1.cfukehrerh4g.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
