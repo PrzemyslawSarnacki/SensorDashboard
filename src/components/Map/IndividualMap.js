@@ -26,7 +26,7 @@ export class IndividualMap extends React.Component {
 
   fetchMap = () => {
     axios
-      .get(`http://192.168.1.20:8000/api/sensor-location/${this.props.id}/`)
+      .get(`https://sensor-dashboards.herokuapp.com/api/sensor-location/${this.props.id}/`)
       .then((res) => {
         res.data.forEach((row) => {
           console.log(markers);

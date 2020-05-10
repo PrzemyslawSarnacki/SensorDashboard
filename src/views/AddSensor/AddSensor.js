@@ -56,7 +56,7 @@ export default function UserProfile() {
 
     const addSensor = () => {
         axios
-            .post(`http://192.168.1.20:8000/api/add-sensor/`, {
+            .post(`https://sensor-dashboards.herokuapp.com/api/add-sensor/`, {
                 name: name,
                 sensor_location: { name: name, city: city, latitude: latitude, longtitude: longtitude },
                 code: name.replace(" ", "-").toLowerCase(),

@@ -16,7 +16,7 @@ const geoUrl =
     const [markers, setMarkers] = useState([]);
   
   const fetchMap = () => {
-    axios.get("http://192.168.1.20:8000/api/sensor-list/").then(res => {
+    axios.get("https://sensor-dashboards.herokuapp.com/api/sensor-list/").then(res => {
       res.data.forEach(row => {
         setMarkers(
           oldArray => [...oldArray, 

@@ -52,7 +52,7 @@ export default function Char(props){
     const fetchData = () => {
       setLoading(true);
       axios
-          .get(`http://192.168.1.20:8000/api/sensor-detail/${props.id}/`)
+          .get(`https://sensor-dashboards.herokuapp.com/api/sensor-detail/${props.id}/`)
           .then((res) => {
             let tmpLabels = [];
             let tmpValues = [];

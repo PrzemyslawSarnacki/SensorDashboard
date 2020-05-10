@@ -58,7 +58,7 @@ export default function TableList() {
 
   const fetchList = () => {
     axios
-      .get(`http://192.168.1.20:8000/api/sensor-list/`)
+      .get(`https://sensor-dashboards.herokuapp.com/api/sensor-list/`)
       .then((res) => {
         setList(res.data);
       })

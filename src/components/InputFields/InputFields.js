@@ -34,7 +34,7 @@ export default function InputFields(props) {
 
     const getPreviousLocation = () => {
         axios
-            .get(`http://192.168.1.20:8000/api/sensor-location/${props.id}/`)
+            .get(`https://sensor-dashboards.herokuapp.com/api/sensor-location/${props.id}/`)
             .then((res) => {
                 res.data.forEach((row) => {
                     console.log(row.sensor_location.city);
@@ -52,7 +52,7 @@ export default function InputFields(props) {
 
     const updateLocation = () => {
         axios
-            .put(`http://192.168.1.20:8000/api/update-location/${props.id}/`, { name: name, city: city, latitude: latitude, longtitude: longtitude }, {
+            .put(`https://sensor-dashboards.herokuapp.com/api/update-location/${props.id}/`, { name: name, city: city, latitude: latitude, longtitude: longtitude }, {
                 "Content-Type": "application/json",
             })
             .then((res) => {
