@@ -14,25 +14,24 @@ Thanks to Heroku and AWS RDS it was possible to deploy this app.
 
 #  App basic functionality
 
-    |Dashboard|
-    |---|
-    |![](preview/dashboard.gif)|
+|Dashboard|
+|---|
+|![](preview/dashboard.gif)|
 
-    |Plot Charts|
-    |---|
-    |![](preview/charts.gif)|
-    
-    |Data in table form|
-    |---|
-    |![](preview/tables.gif)|
+|Plot Charts|
+|---|
+|![](preview/charts.gif)|
 
-    |Sensors location|
-    |---|
-    |![](preview/maps.gif)|
+|Data in table form|
+|---|
+|![](preview/tables.gif)|
+
+|Sensors location|
+|---|
+|![](preview/maps.gif)|
     
 #  It's also responsive
 
-    |Adding sensor|Navbar|
-    |---|---|
-    |![](preview/responsive2.png)|![](preview/responsive2.png)|
-
+|Adding sensor|Navbar|
+|---|---|
+|![](preview/responsive2.png)|![](preview/responsive3.png)|
