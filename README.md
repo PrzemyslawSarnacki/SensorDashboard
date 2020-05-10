@@ -6,7 +6,7 @@ It was meant to work with ESP8266 but can be integrated with any
 device which is capable of doing HTTP requests.
 Some tables are currently populated with COVID-19 data in order to test functionality.
 
-# Keep in mind that this is only prototype and some bugs can occour
+# Keep in mind that this is only prototype and some bugs can occur
 
 # Live demo is available at https://sensor-dashboards.herokuapp.com/
 Thanks to Heroku and AWS RDS it was possible to deploy this app. 
