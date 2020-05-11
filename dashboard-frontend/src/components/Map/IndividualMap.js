@@ -25,7 +25,7 @@ export default memo(function IndividualMap(props) {
     
     const fetchMap = () => {
         axios
-            .get(`https://sensor-dashboards.herokuapp.com/api/sensor-location/${props.id}/`)
+            .get(`http://192.168.1.20:8000/api/sensor-location/${props.id}/`)
             .then((res) => {
                 res.data.forEach((row) => {
                     console.log(markers);
