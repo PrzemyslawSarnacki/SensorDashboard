@@ -29,6 +29,10 @@ Thanks to Heroku and AWS RDS it was possible to deploy this app.
 |Sensors location|
 |---|
 |![](preview/maps.gif)|
+
+|Tracking location in real time|
+|---|
+|![](preview/location.gif)|
     
 #  It's also responsive
 

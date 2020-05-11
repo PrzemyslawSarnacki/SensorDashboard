@@ -12,8 +12,8 @@ def update(sensor_type, latitude, longtitude):
     
 def move(distance, step=1 ,init_latitude=51, init_longtitude=21):
     for i in range(1, distance, step):
-        init_latitude += i
-        init_longtitude += i
+        init_latitude += 0.2 * i
+        init_longtitude +=  i
         update(1, init_latitude, init_longtitude)
         time.sleep(5)
 
