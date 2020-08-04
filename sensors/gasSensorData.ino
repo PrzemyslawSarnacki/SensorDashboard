@@ -2,7 +2,7 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
-#include "secretFile.h"
+// #include "secretFile.h"
 
 const int gasPin = A0; //GAS sensor output pin to Arduino analog A0 pin
 
@@ -39,7 +39,7 @@ void loop()
 
         HTTPClient http; //Declare object of class HTTPClient
 
-        http.begin("http://sensor-dashboards.herokuapp.com//api/add-data/"); //Specify request destination
+        http.begin("http://sensor-dashboards.herokuapp.com/api/add-data/"); //Specify request destination
         http.addHeader("Content-Type", "application/json");   //Specify content-type header
 
         int httpCode = http.POST(JSONmessageBuffer); //Send the request
@@ -48,7 +48,10 @@ void loop()
         digitalWrite(LED_BUILTIN, LOW);
         delay(1000);
         digitalWrite(LED_BUILTIN, HIGH);
+
+        Serial.println("httpCode:"); //Print HTTP return code
         Serial.println(httpCode); //Print HTTP return code
+        Serial.println("Payload:");  //Print request response payload
         Serial.println(payload);  //Print request response payload
 
         http.end();  //Close connection
@@ -58,5 +61,5 @@ void loop()
     {
         Serial.println("Error in WiFi connection");
     }
-    delay(3000);
+    delay(24*3600*1000);
 }
