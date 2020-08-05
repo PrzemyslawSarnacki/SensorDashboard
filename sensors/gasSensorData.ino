@@ -43,7 +43,6 @@ void loop()
         http.addHeader("Content-Type", "application/json");   //Specify content-type header
 
         int httpCode = http.POST(JSONmessageBuffer); //Send the request
-        // int httpCode = http.POST("{"sensor_type" : 1, "value": 1}");   //Send the request
         String payload = http.getString(); //Get the response payload
         digitalWrite(LED_BUILTIN, LOW);
         delay(1000);
