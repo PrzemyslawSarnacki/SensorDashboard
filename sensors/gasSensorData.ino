@@ -2,15 +2,15 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
-// #include "secretFile.h"
+#include "C:/Users/Przemyslaw/Projects/SensorDashboard/sensors/secretFile.h"
 
 const int gasPin = A0; //GAS sensor output pin to Arduino analog A0 pin
 
 void setup()
 {
 
-    const char *ssid = WIFI_SSID;
-    const char *password = WIFI_PASSW;
+    const char ssid[] = WIFI_SSID;
+    const char password[] = WIFI_PASSW;
     Serial.begin(9600);         //Serial connection
     WiFi.begin(ssid, password);   //WiFi connection
     pinMode(LED_BUILTIN, OUTPUT); // Initialize the LED_BUILTIN pin as an output

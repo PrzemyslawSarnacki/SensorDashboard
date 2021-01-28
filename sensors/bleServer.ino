@@ -12,8 +12,8 @@ bool oldDeviceConnected = false;
 // See the following for generating UUIDs:
 // https://www.uuidgenerator.net/
 
-#define SERVICE_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
-#define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+#define SERVICE_UUID        "eed82c0a-b1c2-401e-ae4a-afac80c80c72"
+#define CHARACTERISTIC_UUID "be39a5dc-048b-4b8f-84cb-94c197edd26e"
 
 
 class MyServerCallbacks: public BLEServerCallbacks {
@@ -33,6 +33,8 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 
     if(value.length() > 0){
 
+      Serial.print("WIFI_SSID:");
+      Serial.println(WIFI_SSID);
       Serial.println("**********");
       Serial.print("New value: ");
       
