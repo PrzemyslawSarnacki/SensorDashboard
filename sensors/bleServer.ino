@@ -32,9 +32,6 @@ class MyCallbacks: public BLECharacteristicCallbacks {
     std::string value = pCharacteristic->getValue();
 
     if(value.length() > 0){
-
-      Serial.print("WIFI_SSID:");
-      Serial.println(WIFI_SSID);
       Serial.println("**********");
       Serial.print("New value: ");
       

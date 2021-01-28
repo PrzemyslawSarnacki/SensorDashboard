@@ -52,7 +52,7 @@ class MyClientCallback : public BLEClientCallbacks
         Serial.println("onDisconnect");
     }
 };
-
+ 
 bool connectToServer()
 {
     Serial.print("Forming a connection to ");
