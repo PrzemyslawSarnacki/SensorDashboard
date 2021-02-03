@@ -1,17 +1,15 @@
+
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
 #include <BLE2902.h>
+// See the following for generating UUIDs:
+// https://www.uuidgenerator.net/
 
 BLEServer* pServer = NULL;
 BLECharacteristic* pCharacteristic = NULL;
 bool deviceConnected = false;
 bool oldDeviceConnected = false;
-
-
-// See the following for generating UUIDs:
-// https://www.uuidgenerator.net/
-
 #define SERVICE_UUID        "eed82c0a-b1c2-401e-ae4a-afac80c80c72"
 #define CHARACTERISTIC_UUID "be39a5dc-048b-4b8f-84cb-94c197edd26e"
 
@@ -41,6 +39,9 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 
       Serial.println();
       Serial.println("**********");
+      delay(1000);
+      pCharacteristic->setValue(value);
+        pCharacteristic->notify();
       
     }
   }
@@ -49,47 +50,40 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("Starting BLE work!");
 
-  // Create the BLE Device
-  BLEDevice::init("ESP32 GET NOTI FROM DEVICE");
-
-  // Create the BLE Server
-  pServer = BLEDevice::createServer();
+  BLEDevice::init("ESP32");
+  BLEServer *pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
-
-  // Create the BLE Service
   BLEService *pService = pServer->createService(SERVICE_UUID);
-
-  // Create a BLE Characteristic
-  pCharacteristic = pService->createCharacteristic(
-                      CHARACTERISTIC_UUID,
-                      BLECharacteristic::PROPERTY_READ   |
+  BLECharacteristic *pCharacteristic = pService->createCharacteristic(
+                                         CHARACTERISTIC_UUID,
+                                     BLECharacteristic::PROPERTY_READ   |
                       BLECharacteristic::PROPERTY_WRITE  |
                       BLECharacteristic::PROPERTY_NOTIFY |
                       BLECharacteristic::PROPERTY_INDICATE
-                    );
+                                       );
 
+  pCharacteristic->setValue("Hello World says Neil");
   pCharacteristic->setCallbacks(new MyCallbacks());
 
-  // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.descriptor.gatt.client_characteristic_configuration.xml
-  // Create a BLE Descriptor
   pCharacteristic->addDescriptor(new BLE2902());
 
-  // Start the service
   pService->start();
-
-  // Start advertising
+  // BLEAdvertising *pAdvertising = pServer->getAdvertising();  // this still is working for backward compatibility
   BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
   pAdvertising->addServiceUUID(SERVICE_UUID);
-  pAdvertising->setScanResponse(false);
-  pAdvertising->setMinPreferred(0x0);  // set value to 0x00 to not advertise this parameter
+  pAdvertising->setScanResponse(true);
+  pAdvertising->setMinPreferred(0x06);  // functions that help with iPhone connections issue
+  pAdvertising->setMinPreferred(0x12);
   BLEDevice::startAdvertising();
-  Serial.println("Waiting a client connection to notify...");
+  Serial.println("Characteristic defined! Now you can read it in your phone!");
 }
 
 void loop() {
-    // disconnecting
-    if (!deviceConnected && oldDeviceConnected) {
+  // put your main code here, to run repeatedly:
+  delay(2000);
+      if (!deviceConnected && oldDeviceConnected) {
         delay(500); // give the bluetooth stack the chance to get things ready
         pServer->startAdvertising(); // restart advertising
         Serial.println("start advertising");
@@ -100,4 +94,5 @@ void loop() {
         // do stuff here on connecting
         oldDeviceConnected = deviceConnected;
     }
+
 }
